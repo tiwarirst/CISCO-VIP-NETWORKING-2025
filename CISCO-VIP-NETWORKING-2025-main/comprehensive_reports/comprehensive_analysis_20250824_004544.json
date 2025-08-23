@@ -1,0 +1,3603 @@
+{
+  "metadata": {
+    "timestamp": "2025-08-24T00:45:44.615829",
+    "tool_version": "1.0",
+    "cisco_internship_compliance": true
+  },
+  "network_topology": {
+    "nodes": 12,
+    "edges": 24,
+    "devices": [
+      "R1",
+      "R2",
+      "R3",
+      "S1",
+      "S2",
+      "S3",
+      "PC1",
+      "PC2",
+      "PC3",
+      "PC4",
+      "PC5",
+      "PC6"
+    ]
+  },
+  "validation_results": {
+    "missing_components": [
+      "PC S1 appears to be missing associated switch configuration",
+      "PC S2 appears to be missing associated switch configuration",
+      "PC S3 appears to be missing associated switch configuration",
+      "PC PC1 appears to be missing associated switch configuration",
+      "PC PC2 appears to be missing associated switch configuration",
+      "PC PC3 appears to be missing associated switch configuration",
+      "PC PC4 appears to be missing associated switch configuration",
+      "PC PC5 appears to be missing associated switch configuration",
+      "PC PC6 appears to be missing associated switch configuration"
+    ],
+    "duplicate_ips": [],
+    "vlan_issues": [],
+    "gateway_issues": [],
+    "routing_recommendations": [],
+    "mtu_mismatches": [],
+    "network_loops": [
+      "Potential network loop detected: R2 -> R1 -> R3 -> R2",
+      "Potential network loop detected: R3 -> S3 -> PC5 -> R3"
+    ],
+    "aggregation_opportunities": []
+  },
+  "capacity_analysis": {
+    "bottlenecks": 18,
+    "recommendations": [
+      "Activate alternative paths for R1-S1 to distribute load. Found 4 alternative routes.",
+      "Consider implementing ECMP (Equal-Cost Multi-Path) routing for R1-S1",
+      "URGENT: Implement traffic shaping on R1-S1 to prioritize critical applications",
+      "Consider moving lower-priority traffic to secondary paths for R1-S1",
+      "Activate alternative paths for R1-PC1 to distribute load. Found 4 alternative routes.",
+      "Consider implementing ECMP (Equal-Cost Multi-Path) routing for R1-PC1",
+      "URGENT: Implement traffic shaping on R1-PC1 to prioritize critical applications",
+      "Consider moving lower-priority traffic to secondary paths for R1-PC1",
+      "Activate alternative paths for R1-PC2 to distribute load. Found 4 alternative routes.",
+      "Consider implementing ECMP (Equal-Cost Multi-Path) routing for R1-PC2",
+      "URGENT: Implement traffic shaping on R1-PC2 to prioritize critical applications",
+      "Consider moving lower-priority traffic to secondary paths for R1-PC2",
+      "Activate alternative paths for R1-R3 to distribute load. Found 1 alternative routes.",
+      "Consider implementing ECMP (Equal-Cost Multi-Path) routing for R1-R3",
+      "URGENT: Implement traffic shaping on R1-R3 to prioritize critical applications",
+      "Consider moving lower-priority traffic to secondary paths for R1-R3",
+      "Activate alternative paths for R2-S2 to distribute load. Found 4 alternative routes.",
+      "Consider implementing ECMP (Equal-Cost Multi-Path) routing for R2-S2",
+      "URGENT: Implement traffic shaping on R2-S2 to prioritize critical applications",
+      "Consider moving lower-priority traffic to secondary paths for R2-S2",
+      "Activate alternative paths for R2-PC3 to distribute load. Found 4 alternative routes.",
+      "Consider implementing ECMP (Equal-Cost Multi-Path) routing for R2-PC3",
+      "URGENT: Implement traffic shaping on R2-PC3 to prioritize critical applications",
+      "Consider moving lower-priority traffic to secondary paths for R2-PC3",
+      "Activate alternative paths for R2-PC4 to distribute load. Found 4 alternative routes.",
+      "Consider implementing ECMP (Equal-Cost Multi-Path) routing for R2-PC4",
+      "URGENT: Implement traffic shaping on R2-PC4 to prioritize critical applications",
+      "Consider moving lower-priority traffic to secondary paths for R2-PC4",
+      "Activate alternative paths for R3-S3 to distribute load. Found 4 alternative routes.",
+      "Consider implementing ECMP (Equal-Cost Multi-Path) routing for R3-S3",
+      "URGENT: Implement traffic shaping on R3-S3 to prioritize critical applications",
+      "Consider moving lower-priority traffic to secondary paths for R3-S3",
+      "Activate alternative paths for R3-PC5 to distribute load. Found 4 alternative routes.",
+      "Consider implementing ECMP (Equal-Cost Multi-Path) routing for R3-PC5",
+      "URGENT: Implement traffic shaping on R3-PC5 to prioritize critical applications",
+      "Consider moving lower-priority traffic to secondary paths for R3-PC5",
+      "Activate alternative paths for R3-PC6 to distribute load. Found 4 alternative routes.",
+      "Consider implementing ECMP (Equal-Cost Multi-Path) routing for R3-PC6",
+      "URGENT: Implement traffic shaping on R3-PC6 to prioritize critical applications",
+      "Consider moving lower-priority traffic to secondary paths for R3-PC6",
+      "Activate alternative paths for S1-PC1 to distribute load. Found 4 alternative routes.",
+      "Consider implementing ECMP (Equal-Cost Multi-Path) routing for S1-PC1",
+      "URGENT: Implement traffic shaping on S1-PC1 to prioritize critical applications",
+      "Consider moving lower-priority traffic to secondary paths for S1-PC1",
+      "Activate alternative paths for S1-PC2 to distribute load. Found 4 alternative routes.",
+      "Consider implementing ECMP (Equal-Cost Multi-Path) routing for S1-PC2",
+      "URGENT: Implement traffic shaping on S1-PC2 to prioritize critical applications",
+      "Consider moving lower-priority traffic to secondary paths for S1-PC2",
+      "Activate alternative paths for S2-PC3 to distribute load. Found 4 alternative routes.",
+      "Consider implementing ECMP (Equal-Cost Multi-Path) routing for S2-PC3",
+      "URGENT: Implement traffic shaping on S2-PC3 to prioritize critical applications",
+      "Consider moving lower-priority traffic to secondary paths for S2-PC3",
+      "Activate alternative paths for S2-PC4 to distribute load. Found 4 alternative routes.",
+      "Consider implementing ECMP (Equal-Cost Multi-Path) routing for S2-PC4",
+      "URGENT: Implement traffic shaping on S2-PC4 to prioritize critical applications",
+      "Consider moving lower-priority traffic to secondary paths for S2-PC4",
+      "Activate alternative paths for S3-PC5 to distribute load. Found 4 alternative routes.",
+      "Consider implementing ECMP (Equal-Cost Multi-Path) routing for S3-PC5",
+      "URGENT: Implement traffic shaping on S3-PC5 to prioritize critical applications",
+      "Consider moving lower-priority traffic to secondary paths for S3-PC5",
+      "Activate alternative paths for S3-PC6 to distribute load. Found 4 alternative routes.",
+      "Consider implementing ECMP (Equal-Cost Multi-Path) routing for S3-PC6",
+      "URGENT: Implement traffic shaping on S3-PC6 to prioritize critical applications",
+      "Consider moving lower-priority traffic to secondary paths for S3-PC6",
+      "Activate alternative paths for PC3-PC4 to distribute load. Found 4 alternative routes.",
+      "Consider implementing ECMP (Equal-Cost Multi-Path) routing for PC3-PC4",
+      "URGENT: Implement traffic shaping on PC3-PC4 to prioritize critical applications",
+      "Consider moving lower-priority traffic to secondary paths for PC3-PC4",
+      "Activate alternative paths for PC5-PC6 to distribute load. Found 4 alternative routes.",
+      "Consider implementing ECMP (Equal-Cost Multi-Path) routing for PC5-PC6",
+      "URGENT: Implement traffic shaping on PC5-PC6 to prioritize critical applications",
+      "Consider moving lower-priority traffic to secondary paths for PC5-PC6"
+    ]
+  },
+  "day1_simulation": {
+    "network_stabilization_time": 60,
+    "arp_entries": 12,
+    "ospf_neighbors": 0,
+    "bgp_sessions": 0
+  },
+  "day2_testing": {
+    "test_execution_time": "2025-08-24T00:45:44.614884",
+    "test_summary": {
+      "total_tests": 31,
+      "passed_tests": 85,
+      "failed_tests": 10,
+      "warnings": 5
+    },
+    "detailed_results": {
+      "connectivity_tests": {
+        "reachability_matrix": {
+          "R1": {
+            "R2": true,
+            "R3": true,
+            "S1": true,
+            "S2": true,
+            "S3": true,
+            "PC1": true,
+            "PC2": true,
+            "PC3": true,
+            "PC4": true,
+            "PC5": true,
+            "PC6": true
+          },
+          "R2": {
+            "R1": true,
+            "R3": true,
+            "S1": true,
+            "S2": true,
+            "S3": true,
+            "PC1": true,
+            "PC2": true,
+            "PC3": true,
+            "PC4": true,
+            "PC5": true,
+            "PC6": true
+          },
+          "R3": {
+            "R1": true,
+            "R2": true,
+            "S1": true,
+            "S2": true,
+            "S3": true,
+            "PC1": true,
+            "PC2": true,
+            "PC3": true,
+            "PC4": true,
+            "PC5": true,
+            "PC6": true
+          },
+          "S1": {
+            "R1": true,
+            "R2": true,
+            "R3": true,
+            "S2": true,
+            "S3": true,
+            "PC1": true,
+            "PC2": true,
+            "PC3": true,
+            "PC4": true,
+            "PC5": true,
+            "PC6": true
+          },
+          "S2": {
+            "R1": true,
+            "R2": true,
+            "R3": true,
+            "S1": true,
+            "S3": true,
+            "PC1": true,
+            "PC2": true,
+            "PC3": true,
+            "PC4": true,
+            "PC5": true,
+            "PC6": true
+          },
+          "S3": {
+            "R1": true,
+            "R2": true,
+            "R3": true,
+            "S1": true,
+            "S2": true,
+            "PC1": true,
+            "PC2": true,
+            "PC3": true,
+            "PC4": true,
+            "PC5": true,
+            "PC6": true
+          },
+          "PC1": {
+            "R1": true,
+            "R2": true,
+            "R3": true,
+            "S1": true,
+            "S2": true,
+            "S3": true,
+            "PC2": true,
+            "PC3": true,
+            "PC4": true,
+            "PC5": true,
+            "PC6": true
+          },
+          "PC2": {
+            "R1": true,
+            "R2": true,
+            "R3": true,
+            "S1": true,
+            "S2": true,
+            "S3": true,
+            "PC1": true,
+            "PC3": true,
+            "PC4": true,
+            "PC5": true,
+            "PC6": true
+          },
+          "PC3": {
+            "R1": true,
+            "R2": true,
+            "R3": true,
+            "S1": true,
+            "S2": true,
+            "S3": true,
+            "PC1": true,
+            "PC2": true,
+            "PC4": true,
+            "PC5": true,
+            "PC6": true
+          },
+          "PC4": {
+            "R1": true,
+            "R2": true,
+            "R3": true,
+            "S1": true,
+            "S2": true,
+            "S3": true,
+            "PC1": true,
+            "PC2": true,
+            "PC3": true,
+            "PC5": true,
+            "PC6": true
+          },
+          "PC5": {
+            "R1": true,
+            "R2": true,
+            "R3": true,
+            "S1": true,
+            "S2": true,
+            "S3": true,
+            "PC1": true,
+            "PC2": true,
+            "PC3": true,
+            "PC4": true,
+            "PC6": true
+          },
+          "PC6": {
+            "R1": true,
+            "R2": true,
+            "R3": true,
+            "S1": true,
+            "S2": true,
+            "S3": true,
+            "PC1": true,
+            "PC2": true,
+            "PC3": true,
+            "PC4": true,
+            "PC5": true
+          }
+        },
+        "latency_measurements": {
+          "R1": {
+            "R2": 2.2618756576627232,
+            "R3": 2.382531239787882,
+            "S1": 1.324654006279255,
+            "S2": 2.150329063569235,
+            "S3": 1.5093314319156719,
+            "PC1": 1.2281837133279154,
+            "PC2": 2.2543617605972175,
+            "PC3": 2.3428272206403484,
+            "PC4": 2.4885190715256646,
+            "PC5": 1.9986312213716095,
+            "PC6": 2.856056110581615
+          },
+          "R2": {
+            "R1": 1.9041806530014644,
+            "R3": 2.161090150161543,
+            "S1": 3.7824567394781914,
+            "S2": 2.1770969781962015,
+            "S3": 2.7751852285438012,
+            "PC1": 2.643680893598413,
+            "PC2": 3.4437619678054587,
+            "PC3": 1.9765199288125215,
+            "PC4": 1.3620805510803928,
+            "PC5": 2.3391262161827604,
+            "PC6": 3.209080129673538
+          },
+          "R3": {
+            "R1": 2.379380262746706,
+            "R2": 1.325883596527733,
+            "S1": 3.84064646275986,
+            "S2": 3.6897168296155542,
+            "S3": 1.4127273212605798,
+            "PC1": 3.2237539273299674,
+            "PC2": 3.458457788094155,
+            "PC3": 1.760584343835792,
+            "PC4": 1.9516075197965017,
+            "PC5": 1.4056741654593394,
+            "PC6": 2.007385792343827
+          },
+          "S1": {
+            "R1": 1.8207587993965508,
+            "R2": 3.261227890273151,
+            "R3": 1.7838803151305016,
+            "S2": 3.560667594134739,
+            "S3": 3.8925526459510973,
+            "PC1": 2.1159087644824255,
+            "PC2": 1.606088570715679,
+            "PC3": 3.772741475371441,
+            "PC4": 4.386946277527257,
+            "PC5": 5.166090508269652,
+            "PC6": 3.953128633270568
+          },
+          "S2": {
+            "R1": 2.0310570770497582,
+            "R2": 1.4383354541705662,
+            "R3": 3.2866908552170475,
+            "S1": 5.358524461372951,
+            "S3": 2.9038955547639524,
+            "PC1": 4.109797264540011,
+            "PC2": 4.910591905111261,
+            "PC3": 1.222024927822604,
+            "PC4": 2.0556131544383716,
+            "PC5": 3.232130460194762,
+            "PC6": 3.8173500606028137
+          },
+          "S3": {
+            "R1": 3.985702231831812,
+            "R2": 1.5624041540603502,
+            "R3": 1.4446592547521673,
+            "S1": 3.61798080902513,
+            "S2": 2.05634493243935,
+            "PC1": 3.0797567166231388,
+            "PC2": 4.338893177431592,
+            "PC3": 1.7289573043429722,
+            "PC4": 5.279206266150969,
+            "PC5": 1.7444576445737814,
+            "PC6": 2.4259196926624558
+          },
+          "PC1": {
+            "R1": 1.6051001262950253,
+            "R2": 2.5797911715562187,
+            "R3": 2.401770009618193,
+            "S1": 2.0612011705711915,
+            "S2": 1.96868325337142,
+            "S3": 4.970707450543093,
+            "PC2": 2.4761181759087454,
+            "PC3": 3.2192133399114304,
+            "PC4": 3.750307210113763,
+            "PC5": 4.72854450447025,
+            "PC6": 2.1036899055858944
+          },
+          "PC2": {
+            "R1": 1.8477187292417159,
+            "R2": 2.520184418789481,
+            "R3": 3.7011546879557087,
+            "S1": 1.908393511960138,
+            "S2": 3.2867892576066966,
+            "S3": 4.956334871632395,
+            "PC1": 2.1912759393199424,
+            "PC3": 4.827163143868956,
+            "PC4": 5.447715728703319,
+            "PC5": 4.312308986384449,
+            "PC6": 2.8743024323790265
+          },
+          "PC3": {
+            "R1": 3.688699698047805,
+            "R2": 1.899737459140781,
+            "R3": 2.8854547001743245,
+            "S1": 4.621797195502259,
+            "S2": 2.330181775984446,
+            "S3": 2.6588268019607932,
+            "PC1": 2.2148713991464457,
+            "PC2": 4.709962947461008,
+            "PC4": 1.3866700840141866,
+            "PC5": 5.430737615496798,
+            "PC6": 5.170463773747603
+          },
+          "PC4": {
+            "R1": 2.9492900840848435,
+            "R2": 1.8266738796596769,
+            "R3": 3.8656799572001175,
+            "S1": 1.7730101648351135,
+            "S2": 1.639755365113375,
+            "S3": 4.703476750073545,
+            "PC1": 1.770193963263373,
+            "PC2": 3.315972734480451,
+            "PC3": 1.4557370726050298,
+            "PC5": 2.7644530567740904,
+            "PC6": 3.434071824637435
+          },
+          "PC5": {
+            "R1": 2.2094116324169217,
+            "R2": 1.4039319755566968,
+            "R3": 1.467413439250748,
+            "S1": 2.506402335001497,
+            "S2": 5.489972077831732,
+            "S3": 2.24354098824315,
+            "PC1": 4.0040410005484475,
+            "PC2": 3.814347559261686,
+            "PC3": 4.842856358282864,
+            "PC4": 4.736491329698081,
+            "PC6": 1.5290134625582819
+          },
+          "PC6": {
+            "R1": 2.395166035297615,
+            "R2": 3.3821187307276834,
+            "R3": 1.7670642601580118,
+            "S1": 3.8052014962204215,
+            "S2": 2.5554873076506928,
+            "S3": 2.2421843780232367,
+            "PC1": 1.9137116516556092,
+            "PC2": 4.838558985645715,
+            "PC3": 4.680792775803061,
+            "PC4": 3.0564267704449337,
+            "PC5": 2.361016721762529
+          }
+        },
+        "packet_loss_rates": {
+          "R1": {
+            "R2": 0.07458086144301788,
+            "R3": 0.047276350134108636,
+            "S1": 0.08890599105054584,
+            "S2": 0.030616433034066096,
+            "S3": 0.09428034110501575,
+            "PC1": 0.045682675291696354,
+            "PC2": 0.08390091803057262,
+            "PC3": 0.08496103589593632,
+            "PC4": 0.028661716238486935,
+            "PC5": 0.0013782210570504995,
+            "PC6": 0.06447315987273462
+          },
+          "R2": {
+            "R1": 0.03533274217157558,
+            "R3": 0.08990331164469685,
+            "S1": 0.04425107767979709,
+            "S2": 0.02506100468223408,
+            "S3": 0.012962265388045291,
+            "PC1": 0.07726921865527575,
+            "PC2": 0.04165856459008452,
+            "PC3": 0.007607398016292988,
+            "PC4": 0.01403415656938386,
+            "PC5": 0.05987532813992731,
+            "PC6": 0.07621969610523127
+          },
+          "R3": {
+            "R1": 0.00611290041783098,
+            "R2": 0.07926848566839044,
+            "S1": 0.017984145707117406,
+            "S2": 0.08371862518161183,
+            "S3": 0.0026698133142259994,
+            "PC1": 0.009655362757555764,
+            "PC2": 0.06197357221511687,
+            "PC3": 0.06883019631978553,
+            "PC4": 0.03583879244756912,
+            "PC5": 0.033590472724982036,
+            "PC6": 0.025347256899893058
+          },
+          "S1": {
+            "R1": 0.09796970964733376,
+            "R2": 0.0695077503540353,
+            "R3": 0.06990115623837229,
+            "S2": 0.07783785571024128,
+            "S3": 0.02215548470771003,
+            "PC1": 0.09193946820057422,
+            "PC2": 0.07007268901001476,
+            "PC3": 0.07131666755315867,
+            "PC4": 0.07709530102351697,
+            "PC5": 0.029097405679129208,
+            "PC6": 0.06464562332116124
+          },
+          "S2": {
+            "R1": 0.02452201819999016,
+            "R2": 0.07517975451512432,
+            "R3": 0.032370963869655156,
+            "S1": 0.04416289687416511,
+            "S3": 0.041169598537503016,
+            "PC1": 0.05995619995260553,
+            "PC2": 0.003666624480021652,
+            "PC3": 0.0745371473149094,
+            "PC4": 0.04992174719740299,
+            "PC5": 0.011663666311501853,
+            "PC6": 0.02009124957024947
+          },
+          "S3": {
+            "R1": 0.0459584520838811,
+            "R2": 0.03187306758959577,
+            "R3": 0.06581005175755611,
+            "S1": 0.09699005565783937,
+            "S2": 0.08172836363305858,
+            "PC1": 0.008104506034486347,
+            "PC2": 0.08070564843774364,
+            "PC3": 0.007108418400924033,
+            "PC4": 0.03533708364324163,
+            "PC5": 0.01091458310659943,
+            "PC6": 0.0025711349868083877
+          },
+          "PC1": {
+            "R1": 0.09108809825634329,
+            "R2": 0.03619508610380595,
+            "R3": 0.030133688094364244,
+            "S1": 0.018003316810967118,
+            "S2": 0.08983049000447889,
+            "S3": 0.02929459305937774,
+            "PC2": 0.09238025748618245,
+            "PC3": 0.07153410607442066,
+            "PC4": 0.05909933079859863,
+            "PC5": 0.08990238746998667,
+            "PC6": 0.06320786502113344
+          },
+          "PC2": {
+            "R1": 0.08881942799295206,
+            "R2": 0.012560221926532313,
+            "R3": 0.08882735105429973,
+            "S1": 0.062927307974633,
+            "S2": 0.03118970813177978,
+            "S3": 0.033345385258782036,
+            "PC1": 0.001716338726643729,
+            "PC3": 0.09719214751743022,
+            "PC4": 0.05049031251482288,
+            "PC5": 0.07212157494539422,
+            "PC6": 0.037375530642040425
+          },
+          "PC3": {
+            "R1": 0.06872474133145473,
+            "R2": 0.01133078535676657,
+            "R3": 0.03857318593094501,
+            "S1": 0.04113536214925746,
+            "S2": 0.053019469947723524,
+            "S3": 0.09293117000688883,
+            "PC1": 0.06907639151131141,
+            "PC2": 0.09794514079350315,
+            "PC4": 0.055759956800112635,
+            "PC5": 0.0970431780562509,
+            "PC6": 0.035310697806069984
+          },
+          "PC4": {
+            "R1": 0.09910689721453864,
+            "R2": 0.029036756315126578,
+            "R3": 0.059080554290664444,
+            "S1": 0.09510696282697664,
+            "S2": 0.004844098684229126,
+            "S3": 0.06722161202460888,
+            "PC1": 0.012451472435112977,
+            "PC2": 0.04165984729246152,
+            "PC3": 0.07432218512870609,
+            "PC5": 0.09665758804312302,
+            "PC6": 0.07579905713271894
+          },
+          "PC5": {
+            "R1": 0.03256851313529766,
+            "R2": 0.0028671015682071865,
+            "R3": 0.063461401973517,
+            "S1": 0.07434169418353453,
+            "S2": 0.051778355879470675,
+            "S3": 0.06350280466417117,
+            "PC1": 0.08964684834131333,
+            "PC2": 0.011054674289280498,
+            "PC3": 0.027428228848355198,
+            "PC4": 0.08951720477087563,
+            "PC6": 0.015321386234516588
+          },
+          "PC6": {
+            "R1": 0.030300845661113598,
+            "R2": 0.042772757095663395,
+            "R3": 0.02063963452662737,
+            "S1": 0.004080378178797828,
+            "S2": 0.05256847845716415,
+            "S3": 0.020149263713487544,
+            "PC1": 0.06978647105137231,
+            "PC2": 0.086379818380664,
+            "PC3": 0.009559298425241159,
+            "PC4": 0.08151065319972033,
+            "PC5": 0.03059425571130179
+          }
+        },
+        "path_analysis": {}
+      },
+      "performance_tests": {
+        "throughput_tests": {
+          "R1": {
+            "max_throughput_mbps": 1000.0,
+            "current_throughput_mbps": 486.04233799486036,
+            "utilization_percent": 48.60423379948603
+          },
+          "R2": {
+            "max_throughput_mbps": 1000.0,
+            "current_throughput_mbps": 443.0896332530885,
+            "utilization_percent": 44.308963325308845
+          },
+          "R3": {
+            "max_throughput_mbps": 1000.0,
+            "current_throughput_mbps": 700.5146871075493,
+            "utilization_percent": 70.05146871075493
+          },
+          "S1": {
+            "max_throughput_mbps": 100.0,
+            "current_throughput_mbps": 43.319125929619574,
+            "utilization_percent": 43.319125929619574
+          },
+          "S2": {
+            "max_throughput_mbps": 100.0,
+            "current_throughput_mbps": 44.680742287052624,
+            "utilization_percent": 44.680742287052624
+          },
+          "S3": {
+            "max_throughput_mbps": 100.0,
+            "current_throughput_mbps": 68.49897124242767,
+            "utilization_percent": 68.49897124242767
+          },
+          "PC1": {
+            "max_throughput_mbps": 100.0,
+            "current_throughput_mbps": 39.10652821228642,
+            "utilization_percent": 39.10652821228642
+          },
+          "PC2": {
+            "max_throughput_mbps": 100.0,
+            "current_throughput_mbps": 63.09709730636502,
+            "utilization_percent": 63.09709730636502
+          },
+          "PC3": {
+            "max_throughput_mbps": 100.0,
+            "current_throughput_mbps": 61.785538319305,
+            "utilization_percent": 61.785538319305
+          },
+          "PC4": {
+            "max_throughput_mbps": 100.0,
+            "current_throughput_mbps": 68.67795867395486,
+            "utilization_percent": 68.67795867395486
+          },
+          "PC5": {
+            "max_throughput_mbps": 100.0,
+            "current_throughput_mbps": 48.40096336674862,
+            "utilization_percent": 48.40096336674862
+          },
+          "PC6": {
+            "max_throughput_mbps": 100.0,
+            "current_throughput_mbps": 69.49981714574129,
+            "utilization_percent": 69.49981714574129
+          }
+        },
+        "bandwidth_utilization": {
+          "R1": {
+            "inbound_util_percent": 79.72155193277035,
+            "outbound_util_percent": 37.07200328116619,
+            "peak_util_percent": 90.55021655610382
+          },
+          "R2": {
+            "inbound_util_percent": 55.690625417450185,
+            "outbound_util_percent": 20.563965974721263,
+            "peak_util_percent": 93.59346909438598
+          },
+          "R3": {
+            "inbound_util_percent": 75.15042814849873,
+            "outbound_util_percent": 58.25282304461236,
+            "peak_util_percent": 87.45030827059293
+          },
+          "S1": {
+            "inbound_util_percent": 30.676898110374587,
+            "outbound_util_percent": 45.88688791683092,
+            "peak_util_percent": 89.91617329567099
+          },
+          "S2": {
+            "inbound_util_percent": 48.091792013337304,
+            "outbound_util_percent": 49.57412841581487,
+            "peak_util_percent": 86.3355140980417
+          },
+          "S3": {
+            "inbound_util_percent": 38.165940584912754,
+            "outbound_util_percent": 34.497231389684856,
+            "peak_util_percent": 83.36614452600047
+          },
+          "PC1": {
+            "inbound_util_percent": 63.12078854718532,
+            "outbound_util_percent": 20.324179807667914,
+            "peak_util_percent": 94.38495840257048
+          },
+          "PC2": {
+            "inbound_util_percent": 69.4359791993727,
+            "outbound_util_percent": 75.64976216972994,
+            "peak_util_percent": 82.88123061471198
+          },
+          "PC3": {
+            "inbound_util_percent": 78.2737856914335,
+            "outbound_util_percent": 62.02447121887791,
+            "peak_util_percent": 93.89937882620589
+          },
+          "PC4": {
+            "inbound_util_percent": 20.239898193436495,
+            "outbound_util_percent": 35.006004808266084,
+            "peak_util_percent": 81.08739061752432
+          },
+          "PC5": {
+            "inbound_util_percent": 25.67401953817392,
+            "outbound_util_percent": 53.663475888316526,
+            "peak_util_percent": 92.26890625714228
+          },
+          "PC6": {
+            "inbound_util_percent": 69.02192202244899,
+            "outbound_util_percent": 33.05622951507602,
+            "peak_util_percent": 87.23531669065851
+          }
+        },
+        "interface_statistics": {
+          "R1": {
+            "Loopback": {
+              "rx_packets": 9562974,
+              "tx_packets": 8322827,
+              "rx_bytes": 702993868,
+              "tx_bytes": 437344180,
+              "rx_errors": 58,
+              "tx_errors": 52,
+              "status": "up"
+            },
+            "GigabitEthernet/0": {
+              "rx_packets": 1091138,
+              "tx_packets": 3310745,
+              "rx_bytes": 278648258,
+              "tx_bytes": 649640057,
+              "rx_errors": 19,
+              "tx_errors": 80,
+              "status": "up"
+            },
+            "GigabitEthernet/1": {
+              "rx_packets": 7409567,
+              "tx_packets": 3755910,
+              "rx_bytes": 418011741,
+              "tx_bytes": 712225652,
+              "rx_errors": 54,
+              "tx_errors": 11,
+              "status": "up"
+            },
+            "Serial/0/0": {
+              "rx_packets": 6542326,
+              "tx_packets": 4213658,
+              "rx_bytes": 717463633,
+              "tx_bytes": 183614358,
+              "rx_errors": 62,
+              "tx_errors": 6,
+              "status": "up"
+            }
+          },
+          "R2": {
+            "Loopback": {
+              "rx_packets": 3076573,
+              "tx_packets": 4374642,
+              "rx_bytes": 526704226,
+              "tx_bytes": 363026376,
+              "rx_errors": 37,
+              "tx_errors": 1,
+              "status": "up"
+            },
+            "GigabitEthernet/0": {
+              "rx_packets": 9474127,
+              "tx_packets": 1218679,
+              "rx_bytes": 682832354,
+              "tx_bytes": 999846251,
+              "rx_errors": 95,
+              "tx_errors": 54,
+              "status": "up"
+            },
+            "GigabitEthernet/1": {
+              "rx_packets": 1287723,
+              "tx_packets": 8716209,
+              "rx_bytes": 424555984,
+              "tx_bytes": 508774627,
+              "rx_errors": 17,
+              "tx_errors": 60,
+              "status": "up"
+            },
+            "GigabitEthernet/2": {
+              "rx_packets": 5371329,
+              "tx_packets": 8141966,
+              "rx_bytes": 107340369,
+              "tx_bytes": 815321148,
+              "rx_errors": 31,
+              "tx_errors": 39,
+              "status": "up"
+            },
+            "Serial/0/0": {
+              "rx_packets": 7010474,
+              "tx_packets": 4654837,
+              "rx_bytes": 933042261,
+              "tx_bytes": 910859554,
+              "rx_errors": 42,
+              "tx_errors": 22,
+              "status": "up"
+            },
+            "Serial/0/1": {
+              "rx_packets": 7293564,
+              "tx_packets": 2602439,
+              "rx_bytes": 564679786,
+              "tx_bytes": 239909611,
+              "rx_errors": 83,
+              "tx_errors": 18,
+              "status": "up"
+            }
+          },
+          "R3": {
+            "Loopback": {
+              "rx_packets": 4365957,
+              "tx_packets": 7019156,
+              "rx_bytes": 392864934,
+              "tx_bytes": 829166816,
+              "rx_errors": 40,
+              "tx_errors": 93,
+              "status": "up"
+            },
+            "GigabitEthernet/0": {
+              "rx_packets": 9701174,
+              "tx_packets": 9662930,
+              "rx_bytes": 219252154,
+              "tx_bytes": 968706879,
+              "rx_errors": 84,
+              "tx_errors": 41,
+              "status": "up"
+            },
+            "GigabitEthernet/1": {
+              "rx_packets": 7930726,
+              "tx_packets": 8235294,
+              "rx_bytes": 897071731,
+              "tx_bytes": 504623503,
+              "rx_errors": 91,
+              "tx_errors": 22,
+              "status": "up"
+            },
+            "Serial/0/0": {
+              "rx_packets": 9062448,
+              "tx_packets": 1435108,
+              "rx_bytes": 575099345,
+              "tx_bytes": 589745977,
+              "rx_errors": 58,
+              "tx_errors": 29,
+              "status": "up"
+            },
+            "Serial/1/0": {
+              "rx_packets": 6245020,
+              "tx_packets": 6659332,
+              "rx_bytes": 852044062,
+              "tx_bytes": 498345329,
+              "rx_errors": 87,
+              "tx_errors": 0,
+              "status": "up"
+            }
+          },
+          "S1": {
+            "VLAN": {
+              "rx_packets": 7225721,
+              "tx_packets": 5905082,
+              "rx_bytes": 757091032,
+              "tx_bytes": 681239268,
+              "rx_errors": 37,
+              "tx_errors": 70,
+              "status": "up"
+            },
+            "GigabitEthernet/1": {
+              "rx_packets": 1776067,
+              "tx_packets": 8612637,
+              "rx_bytes": 562558189,
+              "tx_bytes": 840582076,
+              "rx_errors": 34,
+              "tx_errors": 54,
+              "status": "up"
+            },
+            "GigabitEthernet/2": {
+              "rx_packets": 9517097,
+              "tx_packets": 6737638,
+              "rx_bytes": 883186936,
+              "tx_bytes": 262839692,
+              "rx_errors": 29,
+              "tx_errors": 88,
+              "status": "up"
+            },
+            "GigabitEthernet/3": {
+              "rx_packets": 2684831,
+              "tx_packets": 3511972,
+              "rx_bytes": 163262988,
+              "tx_bytes": 947458210,
+              "rx_errors": 54,
+              "tx_errors": 50,
+              "status": "up"
+            },
+            "GigabitEthernet/4": {
+              "rx_packets": 5559828,
+              "tx_packets": 1254725,
+              "rx_bytes": 652206024,
+              "tx_bytes": 775663336,
+              "rx_errors": 26,
+              "tx_errors": 70,
+              "status": "up"
+            },
+            "range GigabitEthernet0/5-24": {
+              "rx_packets": 2175654,
+              "tx_packets": 2759480,
+              "rx_bytes": 923713924,
+              "tx_bytes": 226286257,
+              "rx_errors": 99,
+              "tx_errors": 12,
+              "status": "up"
+            }
+          },
+          "S2": {
+            "VLAN": {
+              "rx_packets": 6612579,
+              "tx_packets": 2274868,
+              "rx_bytes": 490023663,
+              "tx_bytes": 255010872,
+              "rx_errors": 77,
+              "tx_errors": 39,
+              "status": "up"
+            },
+            "GigabitEthernet/1": {
+              "rx_packets": 5881973,
+              "tx_packets": 7018539,
+              "rx_bytes": 930670993,
+              "tx_bytes": 433108785,
+              "rx_errors": 74,
+              "tx_errors": 19,
+              "status": "up"
+            },
+            "GigabitEthernet/2": {
+              "rx_packets": 3586249,
+              "tx_packets": 9369664,
+              "rx_bytes": 175496054,
+              "tx_bytes": 923170263,
+              "rx_errors": 23,
+              "tx_errors": 90,
+              "status": "up"
+            },
+            "GigabitEthernet/3": {
+              "rx_packets": 7503337,
+              "tx_packets": 8195741,
+              "rx_bytes": 666149444,
+              "tx_bytes": 372757255,
+              "rx_errors": 9,
+              "tx_errors": 36,
+              "status": "up"
+            },
+            "GigabitEthernet/4": {
+              "rx_packets": 5924049,
+              "tx_packets": 5448249,
+              "rx_bytes": 347498420,
+              "tx_bytes": 398150235,
+              "rx_errors": 41,
+              "tx_errors": 18,
+              "status": "up"
+            },
+            "range GigabitEthernet0/5-24": {
+              "rx_packets": 7414652,
+              "tx_packets": 8955241,
+              "rx_bytes": 178246800,
+              "tx_bytes": 910036605,
+              "rx_errors": 59,
+              "tx_errors": 3,
+              "status": "up"
+            }
+          },
+          "S3": {
+            "VLAN": {
+              "rx_packets": 1725874,
+              "tx_packets": 1144575,
+              "rx_bytes": 701577359,
+              "tx_bytes": 348446007,
+              "rx_errors": 34,
+              "tx_errors": 27,
+              "status": "up"
+            },
+            "GigabitEthernet/1": {
+              "rx_packets": 6491647,
+              "tx_packets": 5345543,
+              "rx_bytes": 153283132,
+              "tx_bytes": 951056566,
+              "rx_errors": 65,
+              "tx_errors": 80,
+              "status": "up"
+            },
+            "GigabitEthernet/2": {
+              "rx_packets": 3563691,
+              "tx_packets": 2055605,
+              "rx_bytes": 213719409,
+              "tx_bytes": 139850339,
+              "rx_errors": 75,
+              "tx_errors": 51,
+              "status": "up"
+            },
+            "GigabitEthernet/3": {
+              "rx_packets": 1951292,
+              "tx_packets": 8260523,
+              "rx_bytes": 956869883,
+              "tx_bytes": 643242204,
+              "rx_errors": 64,
+              "tx_errors": 69,
+              "status": "up"
+            },
+            "GigabitEthernet/4": {
+              "rx_packets": 3025440,
+              "tx_packets": 1849656,
+              "rx_bytes": 509278265,
+              "tx_bytes": 118433507,
+              "rx_errors": 4,
+              "tx_errors": 6,
+              "status": "up"
+            },
+            "range GigabitEthernet0/5-24": {
+              "rx_packets": 2076165,
+              "tx_packets": 5029441,
+              "rx_bytes": 184123682,
+              "tx_bytes": 316891805,
+              "rx_errors": 51,
+              "tx_errors": 56,
+              "status": "up"
+            }
+          },
+          "PC1": {
+            "FastEthernet/0": {
+              "rx_packets": 2340412,
+              "tx_packets": 3067973,
+              "rx_bytes": 790907664,
+              "tx_bytes": 187863404,
+              "rx_errors": 38,
+              "tx_errors": 92,
+              "status": "up"
+            },
+            "FastEthernet/1": {
+              "rx_packets": 2897241,
+              "tx_packets": 3287268,
+              "rx_bytes": 126396598,
+              "tx_bytes": 348945872,
+              "rx_errors": 33,
+              "tx_errors": 92,
+              "status": "up"
+            }
+          },
+          "PC2": {
+            "FastEthernet/0": {
+              "rx_packets": 7987188,
+              "tx_packets": 7885938,
+              "rx_bytes": 596752651,
+              "tx_bytes": 663466379,
+              "rx_errors": 36,
+              "tx_errors": 85,
+              "status": "up"
+            },
+            "FastEthernet/1": {
+              "rx_packets": 4588098,
+              "tx_packets": 4182527,
+              "rx_bytes": 962349980,
+              "tx_bytes": 948653715,
+              "rx_errors": 32,
+              "tx_errors": 86,
+              "status": "up"
+            }
+          },
+          "PC3": {
+            "FastEthernet/0": {
+              "rx_packets": 7704413,
+              "tx_packets": 3557948,
+              "rx_bytes": 455923958,
+              "tx_bytes": 348480282,
+              "rx_errors": 90,
+              "tx_errors": 76,
+              "status": "down"
+            },
+            "FastEthernet/1": {
+              "rx_packets": 9960441,
+              "tx_packets": 8096523,
+              "rx_bytes": 584037025,
+              "tx_bytes": 114430746,
+              "rx_errors": 56,
+              "tx_errors": 52,
+              "status": "up"
+            }
+          },
+          "PC4": {
+            "FastEthernet/0": {
+              "rx_packets": 7346804,
+              "tx_packets": 3447510,
+              "rx_bytes": 713347305,
+              "tx_bytes": 452440940,
+              "rx_errors": 68,
+              "tx_errors": 9,
+              "status": "up"
+            },
+            "FastEthernet/1": {
+              "rx_packets": 1642632,
+              "tx_packets": 4947111,
+              "rx_bytes": 311826846,
+              "tx_bytes": 937459934,
+              "rx_errors": 45,
+              "tx_errors": 13,
+              "status": "up"
+            }
+          },
+          "PC5": {
+            "FastEthernet/0": {
+              "rx_packets": 2136584,
+              "tx_packets": 7482990,
+              "rx_bytes": 326467416,
+              "tx_bytes": 533138935,
+              "rx_errors": 1,
+              "tx_errors": 15,
+              "status": "up"
+            },
+            "FastEthernet/1": {
+              "rx_packets": 4605042,
+              "tx_packets": 3876323,
+              "rx_bytes": 644271204,
+              "tx_bytes": 910140414,
+              "rx_errors": 38,
+              "tx_errors": 11,
+              "status": "up"
+            }
+          },
+          "PC6": {
+            "FastEthernet/0": {
+              "rx_packets": 9860597,
+              "tx_packets": 3191706,
+              "rx_bytes": 974945430,
+              "tx_bytes": 198830001,
+              "rx_errors": 58,
+              "tx_errors": 16,
+              "status": "up"
+            },
+            "FastEthernet/1": {
+              "rx_packets": 2172965,
+              "tx_packets": 8048741,
+              "rx_bytes": 101408244,
+              "tx_bytes": 552305605,
+              "rx_errors": 9,
+              "tx_errors": 1,
+              "status": "up"
+            }
+          }
+        },
+        "cpu_memory_usage": {
+          "R1": {
+            "cpu_utilization_percent": 40.99033973101307,
+            "memory_utilization_percent": 58.22782251157656,
+            "temperature_celsius": 37.55173332583502,
+            "power_consumption_watts": 190.90948358315168
+          },
+          "R2": {
+            "cpu_utilization_percent": 27.59086541466262,
+            "memory_utilization_percent": 30.667326305929784,
+            "temperature_celsius": 57.77458782684973,
+            "power_consumption_watts": 77.6049153990842
+          },
+          "R3": {
+            "cpu_utilization_percent": 62.465199326982535,
+            "memory_utilization_percent": 68.98318644273823,
+            "temperature_celsius": 45.95639499424883,
+            "power_consumption_watts": 54.397235719275095
+          },
+          "S1": {
+            "cpu_utilization_percent": 11.656401917891385,
+            "memory_utilization_percent": 31.13836547908602,
+            "temperature_celsius": 35.16492449509155,
+            "power_consumption_watts": 97.19976281440836
+          },
+          "S2": {
+            "cpu_utilization_percent": 33.76817424999804,
+            "memory_utilization_percent": 41.458496838960855,
+            "temperature_celsius": 63.81555964720385,
+            "power_consumption_watts": 196.93624737133817
+          },
+          "S3": {
+            "cpu_utilization_percent": 37.38645408933659,
+            "memory_utilization_percent": 67.37885668891292,
+            "temperature_celsius": 37.886443110078446,
+            "power_consumption_watts": 73.98646138063653
+          },
+          "PC1": {
+            "cpu_utilization_percent": 63.22154157277902,
+            "memory_utilization_percent": 47.04665762054333,
+            "temperature_celsius": 62.34498236622581,
+            "power_consumption_watts": 61.22937248450634
+          },
+          "PC2": {
+            "cpu_utilization_percent": 45.7956234139657,
+            "memory_utilization_percent": 53.07642051229689,
+            "temperature_celsius": 61.98836511568586,
+            "power_consumption_watts": 107.3991592269129
+          },
+          "PC3": {
+            "cpu_utilization_percent": 27.110954005955055,
+            "memory_utilization_percent": 58.45700564712318,
+            "temperature_celsius": 43.071765774585266,
+            "power_consumption_watts": 182.76674518659001
+          },
+          "PC4": {
+            "cpu_utilization_percent": 70.35056961247855,
+            "memory_utilization_percent": 43.03641833332299,
+            "temperature_celsius": 40.86075640933326,
+            "power_consumption_watts": 157.8222899733914
+          },
+          "PC5": {
+            "cpu_utilization_percent": 41.430736765928685,
+            "memory_utilization_percent": 44.49365098476094,
+            "temperature_celsius": 39.836671038378235,
+            "power_consumption_watts": 115.25335077675976
+          },
+          "PC6": {
+            "cpu_utilization_percent": 54.56514220199658,
+            "memory_utilization_percent": 61.10301358863489,
+            "temperature_celsius": 45.902789683986995,
+            "power_consumption_watts": 86.5923398193405
+          }
+        },
+        "queue_depths": {
+          "R1": {
+            "input_queue_depth": 35,
+            "output_queue_depth": 16,
+            "priority_queue_depth": 43
+          },
+          "R2": {
+            "input_queue_depth": 51,
+            "output_queue_depth": 21,
+            "priority_queue_depth": 27
+          },
+          "R3": {
+            "input_queue_depth": 39,
+            "output_queue_depth": 78,
+            "priority_queue_depth": 1
+          },
+          "S1": {
+            "input_queue_depth": 41,
+            "output_queue_depth": 21,
+            "priority_queue_depth": 32
+          },
+          "S2": {
+            "input_queue_depth": 31,
+            "output_queue_depth": 4,
+            "priority_queue_depth": 6
+          },
+          "S3": {
+            "input_queue_depth": 49,
+            "output_queue_depth": 81,
+            "priority_queue_depth": 37
+          },
+          "PC1": {
+            "input_queue_depth": 66,
+            "output_queue_depth": 46,
+            "priority_queue_depth": 31
+          },
+          "PC2": {
+            "input_queue_depth": 18,
+            "output_queue_depth": 48,
+            "priority_queue_depth": 26
+          },
+          "PC3": {
+            "input_queue_depth": 22,
+            "output_queue_depth": 76,
+            "priority_queue_depth": 13
+          },
+          "PC4": {
+            "input_queue_depth": 59,
+            "output_queue_depth": 32,
+            "priority_queue_depth": 47
+          },
+          "PC5": {
+            "input_queue_depth": 82,
+            "output_queue_depth": 100,
+            "priority_queue_depth": 35
+          },
+          "PC6": {
+            "input_queue_depth": 34,
+            "output_queue_depth": 27,
+            "priority_queue_depth": 35
+          }
+        }
+      },
+      "configuration_validation": {
+        "configuration_compliance": {
+          "R1": {
+            "hostname_configured": true,
+            "interfaces_configured": true,
+            "routing_configured": true,
+            "security_configured": true
+          },
+          "R2": {
+            "hostname_configured": true,
+            "interfaces_configured": true,
+            "routing_configured": true,
+            "security_configured": true
+          },
+          "R3": {
+            "hostname_configured": true,
+            "interfaces_configured": true,
+            "routing_configured": true,
+            "security_configured": true
+          },
+          "S1": {
+            "hostname_configured": true,
+            "interfaces_configured": true,
+            "routing_configured": true,
+            "security_configured": true
+          },
+          "S2": {
+            "hostname_configured": true,
+            "interfaces_configured": true,
+            "routing_configured": true,
+            "security_configured": true
+          },
+          "S3": {
+            "hostname_configured": true,
+            "interfaces_configured": true,
+            "routing_configured": true,
+            "security_configured": true
+          },
+          "PC1": {
+            "hostname_configured": true,
+            "interfaces_configured": true,
+            "routing_configured": true,
+            "security_configured": true
+          },
+          "PC2": {
+            "hostname_configured": true,
+            "interfaces_configured": true,
+            "routing_configured": true,
+            "security_configured": true
+          },
+          "PC3": {
+            "hostname_configured": true,
+            "interfaces_configured": true,
+            "routing_configured": true,
+            "security_configured": true
+          },
+          "PC4": {
+            "hostname_configured": true,
+            "interfaces_configured": true,
+            "routing_configured": true,
+            "security_configured": true
+          },
+          "PC5": {
+            "hostname_configured": true,
+            "interfaces_configured": true,
+            "routing_configured": true,
+            "security_configured": true
+          },
+          "PC6": {
+            "hostname_configured": true,
+            "interfaces_configured": true,
+            "routing_configured": true,
+            "security_configured": true
+          }
+        },
+        "security_settings": {
+          "R1": {
+            "access_lists_configured": true,
+            "authentication_enabled": true,
+            "encryption_enabled": true,
+            "logging_configured": true
+          },
+          "R2": {
+            "access_lists_configured": true,
+            "authentication_enabled": true,
+            "encryption_enabled": true,
+            "logging_configured": true
+          },
+          "R3": {
+            "access_lists_configured": true,
+            "authentication_enabled": true,
+            "encryption_enabled": true,
+            "logging_configured": true
+          },
+          "S1": {
+            "access_lists_configured": true,
+            "authentication_enabled": true,
+            "encryption_enabled": true,
+            "logging_configured": true
+          },
+          "S2": {
+            "access_lists_configured": true,
+            "authentication_enabled": true,
+            "encryption_enabled": true,
+            "logging_configured": true
+          },
+          "S3": {
+            "access_lists_configured": true,
+            "authentication_enabled": true,
+            "encryption_enabled": true,
+            "logging_configured": true
+          },
+          "PC1": {
+            "access_lists_configured": true,
+            "authentication_enabled": true,
+            "encryption_enabled": true,
+            "logging_configured": true
+          },
+          "PC2": {
+            "access_lists_configured": true,
+            "authentication_enabled": true,
+            "encryption_enabled": true,
+            "logging_configured": true
+          },
+          "PC3": {
+            "access_lists_configured": true,
+            "authentication_enabled": true,
+            "encryption_enabled": true,
+            "logging_configured": true
+          },
+          "PC4": {
+            "access_lists_configured": true,
+            "authentication_enabled": true,
+            "encryption_enabled": true,
+            "logging_configured": true
+          },
+          "PC5": {
+            "access_lists_configured": true,
+            "authentication_enabled": true,
+            "encryption_enabled": true,
+            "logging_configured": true
+          },
+          "PC6": {
+            "access_lists_configured": true,
+            "authentication_enabled": true,
+            "encryption_enabled": true,
+            "logging_configured": true
+          }
+        },
+        "routing_consistency": {
+          "R1": {
+            "ospf_consistent": true,
+            "bgp_consistent": false,
+            "static_routes_valid": true
+          },
+          "R2": {
+            "ospf_consistent": true,
+            "bgp_consistent": false,
+            "static_routes_valid": true
+          },
+          "R3": {
+            "ospf_consistent": true,
+            "bgp_consistent": false,
+            "static_routes_valid": true
+          },
+          "S1": {
+            "ospf_consistent": false,
+            "bgp_consistent": false,
+            "static_routes_valid": true
+          },
+          "S2": {
+            "ospf_consistent": false,
+            "bgp_consistent": false,
+            "static_routes_valid": true
+          },
+          "S3": {
+            "ospf_consistent": false,
+            "bgp_consistent": false,
+            "static_routes_valid": true
+          },
+          "PC1": {
+            "ospf_consistent": false,
+            "bgp_consistent": false,
+            "static_routes_valid": true
+          },
+          "PC2": {
+            "ospf_consistent": false,
+            "bgp_consistent": false,
+            "static_routes_valid": true
+          },
+          "PC3": {
+            "ospf_consistent": false,
+            "bgp_consistent": false,
+            "static_routes_valid": true
+          },
+          "PC4": {
+            "ospf_consistent": false,
+            "bgp_consistent": false,
+            "static_routes_valid": true
+          },
+          "PC5": {
+            "ospf_consistent": false,
+            "bgp_consistent": false,
+            "static_routes_valid": true
+          },
+          "PC6": {
+            "ospf_consistent": false,
+            "bgp_consistent": false,
+            "static_routes_valid": true
+          }
+        },
+        "vlan_consistency": {},
+        "best_practices_check": {
+          "R1": [],
+          "R2": [],
+          "R3": [],
+          "S1": [],
+          "S2": [],
+          "S3": [],
+          "PC1": [],
+          "PC2": [],
+          "PC3": [],
+          "PC4": [],
+          "PC5": [],
+          "PC6": []
+        }
+      },
+      "redundancy_tests": {
+        "path_redundancy": {
+          "R1-R2": {
+            "primary_path": [
+              "R1",
+              "R2"
+            ],
+            "backup_paths": [
+              [
+                "R1",
+                "R3",
+                "R2"
+              ]
+            ],
+            "path_count": 2
+          },
+          "R1-R3": {
+            "primary_path": [
+              "R1",
+              "R3"
+            ],
+            "backup_paths": [
+              [
+                "R1",
+                "R2",
+                "R3"
+              ]
+            ],
+            "path_count": 2
+          },
+          "R1-S1": {
+            "primary_path": [
+              "R1",
+              "S1"
+            ],
+            "backup_paths": [
+              [
+                "R1",
+                "PC1",
+                "PC2",
+                "S1"
+              ],
+              [
+                "R1",
+                "PC1",
+                "S1"
+              ]
+            ],
+            "path_count": 3
+          },
+          "R1-S2": {
+            "primary_path": [
+              "R1",
+              "R2",
+              "S2"
+            ],
+            "backup_paths": [
+              [
+                "R1",
+                "R3",
+                "R2",
+                "S2"
+              ],
+              [
+                "R1",
+                "R3",
+                "R2",
+                "PC3",
+                "S2"
+              ]
+            ],
+            "path_count": 3
+          },
+          "R1-S3": {
+            "primary_path": [
+              "R1",
+              "R3",
+              "S3"
+            ],
+            "backup_paths": [
+              [
+                "R1",
+                "R3",
+                "PC5",
+                "S3"
+              ],
+              [
+                "R1",
+                "R3",
+                "PC5",
+                "PC6",
+                "S3"
+              ]
+            ],
+            "path_count": 3
+          },
+          "R1-PC1": {
+            "primary_path": [
+              "R1",
+              "PC1"
+            ],
+            "backup_paths": [
+              [
+                "R1",
+                "PC2",
+                "PC1"
+              ],
+              [
+                "R1",
+                "PC2",
+                "S1",
+                "PC1"
+              ]
+            ],
+            "path_count": 3
+          },
+          "R1-PC2": {
+            "primary_path": [
+              "R1",
+              "PC2"
+            ],
+            "backup_paths": [
+              [
+                "R1",
+                "PC1",
+                "PC2"
+              ],
+              [
+                "R1",
+                "PC1",
+                "S1",
+                "PC2"
+              ]
+            ],
+            "path_count": 3
+          },
+          "R1-PC3": {
+            "primary_path": [
+              "R1",
+              "R2",
+              "PC3"
+            ],
+            "backup_paths": [
+              [
+                "R1",
+                "R3",
+                "R2",
+                "S2",
+                "PC3"
+              ],
+              [
+                "R1",
+                "R3",
+                "R2",
+                "S2",
+                "PC4",
+                "PC3"
+              ]
+            ],
+            "path_count": 3
+          },
+          "R1-PC4": {
+            "primary_path": [
+              "R1",
+              "R2",
+              "PC4"
+            ],
+            "backup_paths": [
+              [
+                "R1",
+                "R3",
+                "R2",
+                "S2",
+                "PC3",
+                "PC4"
+              ],
+              [
+                "R1",
+                "R3",
+                "R2",
+                "S2",
+                "PC4"
+              ]
+            ],
+            "path_count": 3
+          },
+          "R1-PC5": {
+            "primary_path": [
+              "R1",
+              "R3",
+              "PC5"
+            ],
+            "backup_paths": [
+              [
+                "R1",
+                "R3",
+                "S3",
+                "PC5"
+              ],
+              [
+                "R1",
+                "R3",
+                "S3",
+                "PC6",
+                "PC5"
+              ]
+            ],
+            "path_count": 3
+          },
+          "R1-PC6": {
+            "primary_path": [
+              "R1",
+              "R3",
+              "PC6"
+            ],
+            "backup_paths": [
+              [
+                "R1",
+                "R3",
+                "S3",
+                "PC5",
+                "PC6"
+              ],
+              [
+                "R1",
+                "R3",
+                "S3",
+                "PC6"
+              ]
+            ],
+            "path_count": 3
+          },
+          "R2-R3": {
+            "primary_path": [
+              "R2",
+              "R3"
+            ],
+            "backup_paths": [
+              [
+                "R2",
+                "R1",
+                "R3"
+              ]
+            ],
+            "path_count": 2
+          },
+          "R2-S1": {
+            "primary_path": [
+              "R2",
+              "R1",
+              "S1"
+            ],
+            "backup_paths": [
+              [
+                "R2",
+                "R3",
+                "R1",
+                "PC1",
+                "PC2",
+                "S1"
+              ],
+              [
+                "R2",
+                "R3",
+                "R1",
+                "PC1",
+                "S1"
+              ]
+            ],
+            "path_count": 3
+          },
+          "R2-S2": {
+            "primary_path": [
+              "R2",
+              "S2"
+            ],
+            "backup_paths": [
+              [
+                "R2",
+                "PC3",
+                "S2"
+              ],
+              [
+                "R2",
+                "PC3",
+                "PC4",
+                "S2"
+              ]
+            ],
+            "path_count": 3
+          },
+          "R2-S3": {
+            "primary_path": [
+              "R2",
+              "R3",
+              "S3"
+            ],
+            "backup_paths": [
+              [
+                "R2",
+                "R3",
+                "PC5",
+                "S3"
+              ],
+              [
+                "R2",
+                "R3",
+                "PC5",
+                "PC6",
+                "S3"
+              ]
+            ],
+            "path_count": 3
+          },
+          "R2-PC1": {
+            "primary_path": [
+              "R2",
+              "R1",
+              "PC1"
+            ],
+            "backup_paths": [
+              [
+                "R2",
+                "R3",
+                "R1",
+                "PC1"
+              ],
+              [
+                "R2",
+                "R3",
+                "R1",
+                "PC2",
+                "PC1"
+              ]
+            ],
+            "path_count": 3
+          },
+          "R2-PC2": {
+            "primary_path": [
+              "R2",
+              "R1",
+              "PC2"
+            ],
+            "backup_paths": [
+              [
+                "R2",
+                "R3",
+                "R1",
+                "PC1",
+                "PC2"
+              ],
+              [
+                "R2",
+                "R3",
+                "R1",
+                "PC1",
+                "S1",
+                "PC2"
+              ]
+            ],
+            "path_count": 3
+          },
+          "R2-PC3": {
+            "primary_path": [
+              "R2",
+              "PC3"
+            ],
+            "backup_paths": [
+              [
+                "R2",
+                "S2",
+                "PC3"
+              ],
+              [
+                "R2",
+                "S2",
+                "PC4",
+                "PC3"
+              ]
+            ],
+            "path_count": 3
+          },
+          "R2-PC4": {
+            "primary_path": [
+              "R2",
+              "PC4"
+            ],
+            "backup_paths": [
+              [
+                "R2",
+                "S2",
+                "PC3",
+                "PC4"
+              ],
+              [
+                "R2",
+                "S2",
+                "PC4"
+              ]
+            ],
+            "path_count": 3
+          },
+          "R2-PC5": {
+            "primary_path": [
+              "R2",
+              "R3",
+              "PC5"
+            ],
+            "backup_paths": [
+              [
+                "R2",
+                "R3",
+                "S3",
+                "PC5"
+              ],
+              [
+                "R2",
+                "R3",
+                "S3",
+                "PC6",
+                "PC5"
+              ]
+            ],
+            "path_count": 3
+          },
+          "R2-PC6": {
+            "primary_path": [
+              "R2",
+              "R3",
+              "PC6"
+            ],
+            "backup_paths": [
+              [
+                "R2",
+                "R3",
+                "S3",
+                "PC5",
+                "PC6"
+              ],
+              [
+                "R2",
+                "R3",
+                "S3",
+                "PC6"
+              ]
+            ],
+            "path_count": 3
+          },
+          "R3-S1": {
+            "primary_path": [
+              "R3",
+              "R1",
+              "S1"
+            ],
+            "backup_paths": [
+              [
+                "R3",
+                "R2",
+                "R1",
+                "PC1",
+                "PC2",
+                "S1"
+              ],
+              [
+                "R3",
+                "R2",
+                "R1",
+                "PC1",
+                "S1"
+              ]
+            ],
+            "path_count": 3
+          },
+          "R3-S2": {
+            "primary_path": [
+              "R3",
+              "R2",
+              "S2"
+            ],
+            "backup_paths": [
+              [
+                "R3",
+                "R2",
+                "PC3",
+                "S2"
+              ],
+              [
+                "R3",
+                "R2",
+                "PC3",
+                "PC4",
+                "S2"
+              ]
+            ],
+            "path_count": 3
+          },
+          "R3-S3": {
+            "primary_path": [
+              "R3",
+              "S3"
+            ],
+            "backup_paths": [
+              [
+                "R3",
+                "PC5",
+                "S3"
+              ],
+              [
+                "R3",
+                "PC5",
+                "PC6",
+                "S3"
+              ]
+            ],
+            "path_count": 3
+          },
+          "R3-PC1": {
+            "primary_path": [
+              "R3",
+              "R1",
+              "PC1"
+            ],
+            "backup_paths": [
+              [
+                "R3",
+                "R2",
+                "R1",
+                "PC1"
+              ],
+              [
+                "R3",
+                "R2",
+                "R1",
+                "PC2",
+                "PC1"
+              ]
+            ],
+            "path_count": 3
+          },
+          "R3-PC2": {
+            "primary_path": [
+              "R3",
+              "R1",
+              "PC2"
+            ],
+            "backup_paths": [
+              [
+                "R3",
+                "R2",
+                "R1",
+                "PC1",
+                "PC2"
+              ],
+              [
+                "R3",
+                "R2",
+                "R1",
+                "PC1",
+                "S1",
+                "PC2"
+              ]
+            ],
+            "path_count": 3
+          },
+          "R3-PC3": {
+            "primary_path": [
+              "R3",
+              "R2",
+              "PC3"
+            ],
+            "backup_paths": [
+              [
+                "R3",
+                "R2",
+                "S2",
+                "PC3"
+              ],
+              [
+                "R3",
+                "R2",
+                "S2",
+                "PC4",
+                "PC3"
+              ]
+            ],
+            "path_count": 3
+          },
+          "R3-PC4": {
+            "primary_path": [
+              "R3",
+              "R2",
+              "PC4"
+            ],
+            "backup_paths": [
+              [
+                "R3",
+                "R2",
+                "S2",
+                "PC3",
+                "PC4"
+              ],
+              [
+                "R3",
+                "R2",
+                "S2",
+                "PC4"
+              ]
+            ],
+            "path_count": 3
+          },
+          "R3-PC5": {
+            "primary_path": [
+              "R3",
+              "PC5"
+            ],
+            "backup_paths": [
+              [
+                "R3",
+                "S3",
+                "PC5"
+              ],
+              [
+                "R3",
+                "S3",
+                "PC6",
+                "PC5"
+              ]
+            ],
+            "path_count": 3
+          },
+          "R3-PC6": {
+            "primary_path": [
+              "R3",
+              "PC6"
+            ],
+            "backup_paths": [
+              [
+                "R3",
+                "S3",
+                "PC5",
+                "PC6"
+              ],
+              [
+                "R3",
+                "S3",
+                "PC6"
+              ]
+            ],
+            "path_count": 3
+          },
+          "S1-S2": {
+            "primary_path": [
+              "S1",
+              "R1",
+              "R2",
+              "S2"
+            ],
+            "backup_paths": [
+              [
+                "S1",
+                "PC1",
+                "PC2",
+                "R1",
+                "R3",
+                "R2",
+                "S2"
+              ],
+              [
+                "S1",
+                "PC1",
+                "PC2",
+                "R1",
+                "R2",
+                "S2"
+              ]
+            ],
+            "path_count": 3
+          },
+          "S1-S3": {
+            "primary_path": [
+              "S1",
+              "R1",
+              "R3",
+              "S3"
+            ],
+            "backup_paths": [
+              [
+                "S1",
+                "PC1",
+                "PC2",
+                "R1",
+                "R3",
+                "S3"
+              ],
+              [
+                "S1",
+                "PC1",
+                "PC2",
+                "R1",
+                "R3",
+                "PC5",
+                "S3"
+              ]
+            ],
+            "path_count": 3
+          },
+          "S1-PC1": {
+            "primary_path": [
+              "S1",
+              "PC1"
+            ],
+            "backup_paths": [
+              [
+                "S1",
+                "PC2",
+                "PC1"
+              ],
+              [
+                "S1",
+                "PC2",
+                "R1",
+                "PC1"
+              ]
+            ],
+            "path_count": 3
+          },
+          "S1-PC2": {
+            "primary_path": [
+              "S1",
+              "PC2"
+            ],
+            "backup_paths": [
+              [
+                "S1",
+                "PC1",
+                "PC2"
+              ],
+              [
+                "S1",
+                "PC1",
+                "R1",
+                "PC2"
+              ]
+            ],
+            "path_count": 3
+          },
+          "S1-PC3": {
+            "primary_path": [
+              "S1",
+              "R1",
+              "R2",
+              "PC3"
+            ],
+            "backup_paths": [
+              [
+                "S1",
+                "PC1",
+                "PC2",
+                "R1",
+                "R3",
+                "R2",
+                "PC3"
+              ],
+              [
+                "S1",
+                "PC1",
+                "PC2",
+                "R1",
+                "R2",
+                "S2",
+                "PC3"
+              ]
+            ],
+            "path_count": 3
+          },
+          "S1-PC4": {
+            "primary_path": [
+              "S1",
+              "R1",
+              "R2",
+              "PC4"
+            ],
+            "backup_paths": [
+              [
+                "S1",
+                "PC1",
+                "PC2",
+                "R1",
+                "R3",
+                "R2",
+                "PC4"
+              ],
+              [
+                "S1",
+                "PC1",
+                "PC2",
+                "R1",
+                "R2",
+                "S2",
+                "PC4"
+              ]
+            ],
+            "path_count": 3
+          },
+          "S1-PC5": {
+            "primary_path": [
+              "S1",
+              "R1",
+              "R3",
+              "PC5"
+            ],
+            "backup_paths": [
+              [
+                "S1",
+                "PC1",
+                "PC2",
+                "R1",
+                "R3",
+                "S3",
+                "PC5"
+              ],
+              [
+                "S1",
+                "PC1",
+                "PC2",
+                "R1",
+                "R3",
+                "PC5"
+              ]
+            ],
+            "path_count": 3
+          },
+          "S1-PC6": {
+            "primary_path": [
+              "S1",
+              "R1",
+              "R3",
+              "PC6"
+            ],
+            "backup_paths": [
+              [
+                "S1",
+                "PC1",
+                "PC2",
+                "R1",
+                "R3",
+                "S3",
+                "PC6"
+              ],
+              [
+                "S1",
+                "PC1",
+                "PC2",
+                "R1",
+                "R3",
+                "PC5",
+                "PC6"
+              ]
+            ],
+            "path_count": 3
+          },
+          "S2-S3": {
+            "primary_path": [
+              "S2",
+              "R2",
+              "R3",
+              "S3"
+            ],
+            "backup_paths": [
+              [
+                "S2",
+                "R2",
+                "R3",
+                "PC5",
+                "S3"
+              ],
+              [
+                "S2",
+                "R2",
+                "R3",
+                "PC5",
+                "PC6",
+                "S3"
+              ]
+            ],
+            "path_count": 3
+          },
+          "S2-PC1": {
+            "primary_path": [
+              "S2",
+              "R2",
+              "R1",
+              "PC1"
+            ],
+            "backup_paths": [
+              [
+                "S2",
+                "R2",
+                "R3",
+                "R1",
+                "PC1"
+              ],
+              [
+                "S2",
+                "R2",
+                "R3",
+                "R1",
+                "PC2",
+                "PC1"
+              ]
+            ],
+            "path_count": 3
+          },
+          "S2-PC2": {
+            "primary_path": [
+              "S2",
+              "R2",
+              "R1",
+              "PC2"
+            ],
+            "backup_paths": [
+              [
+                "S2",
+                "R2",
+                "R3",
+                "R1",
+                "PC1",
+                "PC2"
+              ],
+              [
+                "S2",
+                "R2",
+                "R3",
+                "R1",
+                "PC1",
+                "S1",
+                "PC2"
+              ]
+            ],
+            "path_count": 3
+          },
+          "S2-PC3": {
+            "primary_path": [
+              "S2",
+              "PC3"
+            ],
+            "backup_paths": [
+              [
+                "S2",
+                "R2",
+                "PC3"
+              ],
+              [
+                "S2",
+                "R2",
+                "PC4",
+                "PC3"
+              ]
+            ],
+            "path_count": 3
+          },
+          "S2-PC4": {
+            "primary_path": [
+              "S2",
+              "PC4"
+            ],
+            "backup_paths": [
+              [
+                "S2",
+                "R2",
+                "PC3",
+                "PC4"
+              ],
+              [
+                "S2",
+                "R2",
+                "PC4"
+              ]
+            ],
+            "path_count": 3
+          },
+          "S2-PC5": {
+            "primary_path": [
+              "S2",
+              "R2",
+              "R3",
+              "PC5"
+            ],
+            "backup_paths": [
+              [
+                "S2",
+                "R2",
+                "R3",
+                "S3",
+                "PC5"
+              ],
+              [
+                "S2",
+                "R2",
+                "R3",
+                "S3",
+                "PC6",
+                "PC5"
+              ]
+            ],
+            "path_count": 3
+          },
+          "S2-PC6": {
+            "primary_path": [
+              "S2",
+              "R2",
+              "R3",
+              "PC6"
+            ],
+            "backup_paths": [
+              [
+                "S2",
+                "R2",
+                "R3",
+                "S3",
+                "PC5",
+                "PC6"
+              ],
+              [
+                "S2",
+                "R2",
+                "R3",
+                "S3",
+                "PC6"
+              ]
+            ],
+            "path_count": 3
+          },
+          "S3-PC1": {
+            "primary_path": [
+              "S3",
+              "R3",
+              "R1",
+              "PC1"
+            ],
+            "backup_paths": [
+              [
+                "S3",
+                "R3",
+                "R2",
+                "R1",
+                "PC1"
+              ],
+              [
+                "S3",
+                "R3",
+                "R2",
+                "R1",
+                "PC2",
+                "PC1"
+              ]
+            ],
+            "path_count": 3
+          },
+          "S3-PC2": {
+            "primary_path": [
+              "S3",
+              "R3",
+              "R1",
+              "PC2"
+            ],
+            "backup_paths": [
+              [
+                "S3",
+                "R3",
+                "R2",
+                "R1",
+                "PC1",
+                "PC2"
+              ],
+              [
+                "S3",
+                "R3",
+                "R2",
+                "R1",
+                "PC1",
+                "S1",
+                "PC2"
+              ]
+            ],
+            "path_count": 3
+          },
+          "S3-PC3": {
+            "primary_path": [
+              "S3",
+              "R3",
+              "R2",
+              "PC3"
+            ],
+            "backup_paths": [
+              [
+                "S3",
+                "R3",
+                "R2",
+                "S2",
+                "PC3"
+              ],
+              [
+                "S3",
+                "R3",
+                "R2",
+                "S2",
+                "PC4",
+                "PC3"
+              ]
+            ],
+            "path_count": 3
+          },
+          "S3-PC4": {
+            "primary_path": [
+              "S3",
+              "R3",
+              "R2",
+              "PC4"
+            ],
+            "backup_paths": [
+              [
+                "S3",
+                "R3",
+                "R2",
+                "S2",
+                "PC3",
+                "PC4"
+              ],
+              [
+                "S3",
+                "R3",
+                "R2",
+                "S2",
+                "PC4"
+              ]
+            ],
+            "path_count": 3
+          },
+          "S3-PC5": {
+            "primary_path": [
+              "S3",
+              "PC5"
+            ],
+            "backup_paths": [
+              [
+                "S3",
+                "R3",
+                "PC5"
+              ],
+              [
+                "S3",
+                "R3",
+                "PC6",
+                "PC5"
+              ]
+            ],
+            "path_count": 3
+          },
+          "S3-PC6": {
+            "primary_path": [
+              "S3",
+              "PC6"
+            ],
+            "backup_paths": [
+              [
+                "S3",
+                "R3",
+                "PC5",
+                "PC6"
+              ],
+              [
+                "S3",
+                "R3",
+                "PC6"
+              ]
+            ],
+            "path_count": 3
+          },
+          "PC1-PC2": {
+            "primary_path": [
+              "PC1",
+              "PC2"
+            ],
+            "backup_paths": [
+              [
+                "PC1",
+                "R1",
+                "PC2"
+              ],
+              [
+                "PC1",
+                "R1",
+                "S1",
+                "PC2"
+              ]
+            ],
+            "path_count": 3
+          },
+          "PC1-PC3": {
+            "primary_path": [
+              "PC1",
+              "R1",
+              "R2",
+              "PC3"
+            ],
+            "backup_paths": [
+              [
+                "PC1",
+                "PC2",
+                "R1",
+                "R3",
+                "R2",
+                "S2",
+                "PC3"
+              ],
+              [
+                "PC1",
+                "PC2",
+                "R1",
+                "R3",
+                "R2",
+                "PC3"
+              ]
+            ],
+            "path_count": 3
+          },
+          "PC1-PC4": {
+            "primary_path": [
+              "PC1",
+              "R1",
+              "R2",
+              "PC4"
+            ],
+            "backup_paths": [
+              [
+                "PC1",
+                "PC2",
+                "R1",
+                "R3",
+                "R2",
+                "S2",
+                "PC4"
+              ],
+              [
+                "PC1",
+                "PC2",
+                "R1",
+                "R3",
+                "R2",
+                "PC3",
+                "PC4"
+              ]
+            ],
+            "path_count": 3
+          },
+          "PC1-PC5": {
+            "primary_path": [
+              "PC1",
+              "R1",
+              "R3",
+              "PC5"
+            ],
+            "backup_paths": [
+              [
+                "PC1",
+                "PC2",
+                "R1",
+                "R3",
+                "S3",
+                "PC5"
+              ],
+              [
+                "PC1",
+                "PC2",
+                "R1",
+                "R3",
+                "S3",
+                "PC6",
+                "PC5"
+              ]
+            ],
+            "path_count": 3
+          },
+          "PC1-PC6": {
+            "primary_path": [
+              "PC1",
+              "R1",
+              "R3",
+              "PC6"
+            ],
+            "backup_paths": [
+              [
+                "PC1",
+                "PC2",
+                "R1",
+                "R3",
+                "S3",
+                "PC5",
+                "PC6"
+              ],
+              [
+                "PC1",
+                "PC2",
+                "R1",
+                "R3",
+                "S3",
+                "PC6"
+              ]
+            ],
+            "path_count": 3
+          },
+          "PC2-PC3": {
+            "primary_path": [
+              "PC2",
+              "R1",
+              "R2",
+              "PC3"
+            ],
+            "backup_paths": [
+              [
+                "PC2",
+                "PC1",
+                "R1",
+                "R3",
+                "R2",
+                "S2",
+                "PC3"
+              ],
+              [
+                "PC2",
+                "PC1",
+                "R1",
+                "R3",
+                "R2",
+                "PC3"
+              ]
+            ],
+            "path_count": 3
+          },
+          "PC2-PC4": {
+            "primary_path": [
+              "PC2",
+              "R1",
+              "R2",
+              "PC4"
+            ],
+            "backup_paths": [
+              [
+                "PC2",
+                "PC1",
+                "R1",
+                "R3",
+                "R2",
+                "S2",
+                "PC4"
+              ],
+              [
+                "PC2",
+                "PC1",
+                "R1",
+                "R3",
+                "R2",
+                "PC3",
+                "PC4"
+              ]
+            ],
+            "path_count": 3
+          },
+          "PC2-PC5": {
+            "primary_path": [
+              "PC2",
+              "R1",
+              "R3",
+              "PC5"
+            ],
+            "backup_paths": [
+              [
+                "PC2",
+                "PC1",
+                "R1",
+                "R3",
+                "S3",
+                "PC5"
+              ],
+              [
+                "PC2",
+                "PC1",
+                "R1",
+                "R3",
+                "S3",
+                "PC6",
+                "PC5"
+              ]
+            ],
+            "path_count": 3
+          },
+          "PC2-PC6": {
+            "primary_path": [
+              "PC2",
+              "R1",
+              "R3",
+              "PC6"
+            ],
+            "backup_paths": [
+              [
+                "PC2",
+                "PC1",
+                "R1",
+                "R3",
+                "S3",
+                "PC5",
+                "PC6"
+              ],
+              [
+                "PC2",
+                "PC1",
+                "R1",
+                "R3",
+                "S3",
+                "PC6"
+              ]
+            ],
+            "path_count": 3
+          },
+          "PC3-PC4": {
+            "primary_path": [
+              "PC3",
+              "PC4"
+            ],
+            "backup_paths": [
+              [
+                "PC3",
+                "R2",
+                "S2",
+                "PC4"
+              ],
+              [
+                "PC3",
+                "R2",
+                "PC4"
+              ]
+            ],
+            "path_count": 3
+          },
+          "PC3-PC5": {
+            "primary_path": [
+              "PC3",
+              "R2",
+              "R3",
+              "PC5"
+            ],
+            "backup_paths": [
+              [
+                "PC3",
+                "R2",
+                "R3",
+                "S3",
+                "PC5"
+              ],
+              [
+                "PC3",
+                "R2",
+                "R3",
+                "S3",
+                "PC6",
+                "PC5"
+              ]
+            ],
+            "path_count": 3
+          },
+          "PC3-PC6": {
+            "primary_path": [
+              "PC3",
+              "R2",
+              "R3",
+              "PC6"
+            ],
+            "backup_paths": [
+              [
+                "PC3",
+                "R2",
+                "R3",
+                "S3",
+                "PC5",
+                "PC6"
+              ],
+              [
+                "PC3",
+                "R2",
+                "R3",
+                "S3",
+                "PC6"
+              ]
+            ],
+            "path_count": 3
+          },
+          "PC4-PC5": {
+            "primary_path": [
+              "PC4",
+              "R2",
+              "R3",
+              "PC5"
+            ],
+            "backup_paths": [
+              [
+                "PC4",
+                "R2",
+                "R3",
+                "S3",
+                "PC5"
+              ],
+              [
+                "PC4",
+                "R2",
+                "R3",
+                "S3",
+                "PC6",
+                "PC5"
+              ]
+            ],
+            "path_count": 3
+          },
+          "PC4-PC6": {
+            "primary_path": [
+              "PC4",
+              "R2",
+              "R3",
+              "PC6"
+            ],
+            "backup_paths": [
+              [
+                "PC4",
+                "R2",
+                "R3",
+                "S3",
+                "PC5",
+                "PC6"
+              ],
+              [
+                "PC4",
+                "R2",
+                "R3",
+                "S3",
+                "PC6"
+              ]
+            ],
+            "path_count": 3
+          },
+          "PC5-PC6": {
+            "primary_path": [
+              "PC5",
+              "PC6"
+            ],
+            "backup_paths": [
+              [
+                "PC5",
+                "R3",
+                "S3",
+                "PC6"
+              ],
+              [
+                "PC5",
+                "R3",
+                "PC6"
+              ]
+            ],
+            "path_count": 3
+          }
+        },
+        "failover_tests": {},
+        "recovery_times": {},
+        "backup_paths": {}
+      },
+      "security_validation": {
+        "access_control": {
+          "R1": {
+            "acl_ok": true
+          },
+          "R2": {
+            "acl_ok": true
+          },
+          "R3": {
+            "acl_ok": true
+          },
+          "S1": {
+            "acl_ok": true
+          },
+          "S2": {
+            "acl_ok": true
+          },
+          "S3": {
+            "acl_ok": true
+          },
+          "PC1": {
+            "acl_ok": true
+          },
+          "PC2": {
+            "acl_ok": true
+          },
+          "PC3": {
+            "acl_ok": true
+          },
+          "PC4": {
+            "acl_ok": true
+          },
+          "PC5": {
+            "acl_ok": true
+          },
+          "PC6": {
+            "acl_ok": true
+          }
+        },
+        "authentication": {
+          "R1": {
+            "aaa_ok": true
+          },
+          "R2": {
+            "aaa_ok": true
+          },
+          "R3": {
+            "aaa_ok": true
+          },
+          "S1": {
+            "aaa_ok": true
+          },
+          "S2": {
+            "aaa_ok": true
+          },
+          "S3": {
+            "aaa_ok": true
+          },
+          "PC1": {
+            "aaa_ok": true
+          },
+          "PC2": {
+            "aaa_ok": true
+          },
+          "PC3": {
+            "aaa_ok": true
+          },
+          "PC4": {
+            "aaa_ok": true
+          },
+          "PC5": {
+            "aaa_ok": true
+          },
+          "PC6": {
+            "aaa_ok": true
+          }
+        },
+        "encryption": {
+          "R1": {
+            "ssh_ok": true
+          },
+          "R2": {
+            "ssh_ok": true
+          },
+          "R3": {
+            "ssh_ok": true
+          },
+          "S1": {
+            "ssh_ok": true
+          },
+          "S2": {
+            "ssh_ok": true
+          },
+          "S3": {
+            "ssh_ok": true
+          },
+          "PC1": {
+            "ssh_ok": true
+          },
+          "PC2": {
+            "ssh_ok": true
+          },
+          "PC3": {
+            "ssh_ok": true
+          },
+          "PC4": {
+            "ssh_ok": true
+          },
+          "PC5": {
+            "ssh_ok": true
+          },
+          "PC6": {
+            "ssh_ok": true
+          }
+        },
+        "vulnerability_assessment": {
+          "R1": {
+            "risk": "low"
+          },
+          "R2": {
+            "risk": "low"
+          },
+          "R3": {
+            "risk": "low"
+          },
+          "S1": {
+            "risk": "medium"
+          },
+          "S2": {
+            "risk": "medium"
+          },
+          "S3": {
+            "risk": "medium"
+          },
+          "PC1": {
+            "risk": "medium"
+          },
+          "PC2": {
+            "risk": "medium"
+          },
+          "PC3": {
+            "risk": "medium"
+          },
+          "PC4": {
+            "risk": "medium"
+          },
+          "PC5": {
+            "risk": "medium"
+          },
+          "PC6": {
+            "risk": "medium"
+          }
+        }
+      },
+      "protocol_validation": {
+        "ospf_validation": {
+          "R1": {
+            "neighbors_up": true
+          },
+          "R2": {
+            "neighbors_up": true
+          },
+          "R3": {
+            "neighbors_up": true
+          }
+        },
+        "bgp_validation": {},
+        "spanning_tree": {},
+        "protocol_convergence": {}
+      },
+      "capacity_planning": {
+        "current_utilization": {
+          "R1": {
+            "avg_util_percent": 23.438616027076367
+          },
+          "R2": {
+            "avg_util_percent": 50.9069577813102
+          },
+          "R3": {
+            "avg_util_percent": 35.786473618308705
+          },
+          "S1": {
+            "avg_util_percent": 53.07131129199192
+          },
+          "S2": {
+            "avg_util_percent": 40.70213996173551
+          },
+          "S3": {
+            "avg_util_percent": 46.05558511820126
+          },
+          "PC1": {
+            "avg_util_percent": 53.09222279624298
+          },
+          "PC2": {
+            "avg_util_percent": 26.285671378401318
+          },
+          "PC3": {
+            "avg_util_percent": 39.27085414647547
+          },
+          "PC4": {
+            "avg_util_percent": 38.307805891157805
+          },
+          "PC5": {
+            "avg_util_percent": 20.606562373721268
+          },
+          "PC6": {
+            "avg_util_percent": 36.73289532680726
+          }
+        },
+        "projected_growth": {},
+        "bottleneck_analysis": {
+          "R1": {
+            "bottleneck": false
+          },
+          "R2": {
+            "bottleneck": false
+          },
+          "R3": {
+            "bottleneck": false
+          },
+          "S1": {
+            "bottleneck": false
+          },
+          "S2": {
+            "bottleneck": false
+          },
+          "S3": {
+            "bottleneck": false
+          },
+          "PC1": {
+            "bottleneck": false
+          },
+          "PC2": {
+            "bottleneck": false
+          },
+          "PC3": {
+            "bottleneck": false
+          },
+          "PC4": {
+            "bottleneck": false
+          },
+          "PC5": {
+            "bottleneck": false
+          },
+          "PC6": {
+            "bottleneck": false
+          }
+        },
+        "scaling_recommendations": {
+          "R1": [
+            "Monitor utilization trend"
+          ],
+          "R2": [
+            "Monitor utilization trend"
+          ],
+          "R3": [
+            "Monitor utilization trend"
+          ],
+          "S1": [
+            "Monitor utilization trend"
+          ],
+          "S2": [
+            "Monitor utilization trend"
+          ],
+          "S3": [
+            "Monitor utilization trend"
+          ],
+          "PC1": [
+            "Monitor utilization trend"
+          ],
+          "PC2": [
+            "Monitor utilization trend"
+          ],
+          "PC3": [
+            "Monitor utilization trend"
+          ],
+          "PC4": [
+            "Monitor utilization trend"
+          ],
+          "PC5": [
+            "Monitor utilization trend"
+          ],
+          "PC6": [
+            "Monitor utilization trend"
+          ]
+        }
+      },
+      "baseline_comparison": {
+        "status": "No baseline available"
+      }
+    },
+    "recommendations": [
+      "Consider upgrading bandwidth on high-utilization links",
+      "Implement additional redundancy for critical paths",
+      "Review security configurations for compliance",
+      "Optimize OSPF areas for better convergence",
+      "Schedule regular configuration backups",
+      "Monitor temperature on high-usage devices",
+      "Consider load balancing for traffic distribution"
+    ],
+    "next_test_schedule": "2025-08-25T00:45:44.614884"
+  },
+  "simulation_statistics": {
+    "running": true,
+    "paused": false,
+    "total_nodes": 12,
+    "total_links": 24,
+    "node_statistics": {
+      "R1": {
+        "node_id": "R1",
+        "device_type": "router",
+        "statistics": {
+          "packets_sent": 30,
+          "packets_received": 2,
+          "packets_dropped": 0,
+          "uptime": 0.13062381744384766,
+          "last_update": 1755976544.6158295
+        },
+        "arp_table_size": 0,
+        "routing_table_size": 0,
+        "packet_log_size": 32
+      },
+      "R2": {
+        "node_id": "R2",
+        "device_type": "router",
+        "statistics": {
+          "packets_sent": 30,
+          "packets_received": 0,
+          "packets_dropped": 0,
+          "uptime": 0.10888814926147461,
+          "last_update": 1755976544.5940938
+        },
+        "arp_table_size": 0,
+        "routing_table_size": 0,
+        "packet_log_size": 30
+      },
+      "R3": {
+        "node_id": "R3",
+        "device_type": "router",
+        "statistics": {
+          "packets_sent": 30,
+          "packets_received": 0,
+          "packets_dropped": 0,
+          "uptime": 0.10059022903442383,
+          "last_update": 1755976544.5940938
+        },
+        "arp_table_size": 0,
+        "routing_table_size": 0,
+        "packet_log_size": 30
+      },
+      "S1": {
+        "node_id": "S1",
+        "device_type": "pc",
+        "statistics": {
+          "packets_sent": 0,
+          "packets_received": 0,
+          "packets_dropped": 0,
+          "uptime": 0.11440920829772949,
+          "last_update": 1755976544.5940938
+        },
+        "arp_table_size": 0,
+        "routing_table_size": 0,
+        "packet_log_size": 0
+      },
+      "S2": {
+        "node_id": "S2",
+        "device_type": "pc",
+        "statistics": {
+          "packets_sent": 0,
+          "packets_received": 0,
+          "packets_dropped": 0,
+          "uptime": 0.10023880004882812,
+          "last_update": 1755976544.5503592
+        },
+        "arp_table_size": 0,
+        "routing_table_size": 0,
+        "packet_log_size": 0
+      },
+      "S3": {
+        "node_id": "S3",
+        "device_type": "pc",
+        "statistics": {
+          "packets_sent": 0,
+          "packets_received": 0,
+          "packets_dropped": 0,
+          "uptime": 0.13614487648010254,
+          "last_update": 1755976544.6158295
+        },
+        "arp_table_size": 0,
+        "routing_table_size": 0,
+        "packet_log_size": 0
+      },
+      "PC1": {
+        "node_id": "PC1",
+        "device_type": "pc",
+        "statistics": {
+          "packets_sent": 0,
+          "packets_received": 0,
+          "packets_dropped": 0,
+          "uptime": 0.10288095474243164,
+          "last_update": 1755976544.5710912
+        },
+        "arp_table_size": 0,
+        "routing_table_size": 0,
+        "packet_log_size": 0
+      },
+      "PC2": {
+        "node_id": "PC2",
+        "device_type": "pc",
+        "statistics": {
+          "packets_sent": 0,
+          "packets_received": 0,
+          "packets_dropped": 0,
+          "uptime": 0.10072207450866699,
+          "last_update": 1755976544.5536299
+        },
+        "arp_table_size": 0,
+        "routing_table_size": 0,
+        "packet_log_size": 0
+      },
+      "PC3": {
+        "node_id": "PC3",
+        "device_type": "pc",
+        "statistics": {
+          "packets_sent": 0,
+          "packets_received": 0,
+          "packets_dropped": 0,
+          "uptime": 0.10775518417358398,
+          "last_update": 1755976544.5940938
+        },
+        "arp_table_size": 0,
+        "routing_table_size": 0,
+        "packet_log_size": 0
+      },
+      "PC4": {
+        "node_id": "PC4",
+        "device_type": "pc",
+        "statistics": {
+          "packets_sent": 0,
+          "packets_received": 0,
+          "packets_dropped": 0,
+          "uptime": 0.11054325103759766,
+          "last_update": 1755976544.5940938
+        },
+        "arp_table_size": 0,
+        "routing_table_size": 0,
+        "packet_log_size": 0
+      },
+      "PC5": {
+        "node_id": "PC5",
+        "device_type": "pc",
+        "statistics": {
+          "packets_sent": 0,
+          "packets_received": 0,
+          "packets_dropped": 0,
+          "uptime": 0.11208558082580566,
+          "last_update": 1755976544.5940938
+        },
+        "arp_table_size": 0,
+        "routing_table_size": 0,
+        "packet_log_size": 0
+      },
+      "PC6": {
+        "node_id": "PC6",
+        "device_type": "pc",
+        "statistics": {
+          "packets_sent": 0,
+          "packets_received": 0,
+          "packets_dropped": 0,
+          "uptime": 0.12820816040039062,
+          "last_update": 1755976544.6158295
+        },
+        "arp_table_size": 0,
+        "routing_table_size": 0,
+        "packet_log_size": 0
+      }
+    }
+  },
+  "missing_components": [],
+  "tool_requirements_compliance": {
+    "hierarchical_topology": true,
+    "bandwidth_analysis": true,
+    "load_balancing_recommendations": true,
+    "missing_component_detection": true,
+    "configuration_validation": true,
+    "day1_simulation": true,
+    "multithreading": true,
+    "ipc_communication": true,
+    "statistics_logging": true,
+    "fault_injection": true,
+    "pause_resume_capability": true
+  }
+}
