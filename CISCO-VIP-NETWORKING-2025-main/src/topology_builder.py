@@ -1,5 +1,3 @@
-
-
 import ipaddress
 import re
 import networkx as nx
@@ -14,7 +12,8 @@ class topology_builder:
             "router": "wifi-router.png",
             "switch": "hub.png",
             "pc": "monitor.png",
-            "laptop": "laptop.png"
+            "laptop": "laptop.png",
+            "unknown": "question.png"
         }
 
     def build_from_configs(self, configs: Dict[str, Dict]) -> nx.Graph:
@@ -31,7 +30,7 @@ class topology_builder:
         for key, cfg in configs.items():
             p = cfg["parsed_config"]
             host = p.get("hostname", key)
-            dt = p.get("device_type", "router").lower()
+            dt = p.get("device_type", "unknown").lower()
             label, icon = self._vip_label_icon(key, host, dt)
             bandwidth_summary = self._calculate_device_bandwidth(p)
 
@@ -112,6 +111,7 @@ class topology_builder:
     def _vip_label_icon(self, key, host, dt):
         key = key.lower()
         host = (host or "").lower()
+
         if "laptop" in key or "laptop" in host:
             return "laptop", "laptop"
         if key.startswith("pc") or "pc" in key:
@@ -126,7 +126,9 @@ class topology_builder:
             return "switch", "switch"
         if dt == "router" or key.startswith("r"):
             return "router", "router"
-        return "pc", "pc"
+
+        # FIX: unknown devices should not be forced into "pc"
+        return dt, dt
 
     def _discover_ip_links(self, topo, configs):
         subnet_map = {}
@@ -296,4 +298,3 @@ class topology_builder:
             else:
                 priority = "low"
             data["priority"] = priority
-

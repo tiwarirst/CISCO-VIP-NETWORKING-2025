@@ -1,7 +1,6 @@
-
 import re
 from pathlib import Path
-from typing import Dict, List, Any, Optional
+from typing import List
 import ipaddress
 
 class CiscoConfigParser:
@@ -187,13 +186,22 @@ class CiscoConfigParser:
             if l.lower().startswith("ip route 0.0.0.0 0.0.0.0"):
                 parsed["gateway_of_last_resort"] = self._safe_get(l.split(), 4)
 
-        # Determine device type
-        if any(iface.get("switchport_mode") for iface in parsed["interfaces"]):
+        # 🔹 Determine device type (improved)
+        hostname = (parsed["hostname"] or "").lower()
+        config_text_lower = config_text.lower()
+
+        if "switch" in hostname or "switch" in config_text_lower:
+            parsed["device_type"] = "switch"
+        elif "router" in hostname or "router" in config_text_lower:
+            parsed["device_type"] = "router"
+        elif any(iface.get("switchport_mode") for iface in parsed["interfaces"]):
             parsed["device_type"] = "switch"
         elif parsed["routing"]["ospf"]["enabled"] or parsed["routing"]["bgp"]["enabled"]:
             parsed["device_type"] = "router"
-        else:
+        elif hostname.startswith("pc") or "pc" in hostname:
             parsed["device_type"] = "pc"
+        else:
+            parsed["device_type"] = "pc"  # fallback
 
         return {"parsed_config": parsed}
 

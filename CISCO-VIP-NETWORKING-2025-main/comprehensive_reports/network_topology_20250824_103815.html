@@ -1,0 +1,444 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script src="lib/bindings/utils.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+        
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1></h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 100vw;
+                 height: 100vh;
+                 background-color: #ffffff;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+
+             
+
+             
+        </style>
+    
+<style>
+body, html {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    overflow: hidden !important;
+    background: #ffffff !important;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+}
+#mynetworkid {
+    width: 100vw !important;
+    height: 100vh !important;
+    border: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+}
+/* Cisco-style grid background */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: 
+        linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
+    background-size: 20px 20px;
+    pointer-events: none;
+    z-index: -1;
+}
+</style>
+</head>
+
+
+    <body>
+        <div class="card" style="width: 100%">
+            
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"borderWidth": 2, "color": {"border": "#1e40af"}, "font": {"color": "#000000"}, "id": "R1", "image": "data:image/svg+xml;charset=utf-8,\u003csvg xmlns=\"http://www.w3.org/2000/svg\" width=\"48\" height=\"48\" viewBox=\"0 0 48 48\"\u003e\n            \u003crect x=\"4\" y=\"18\" width=\"40\" height=\"12\" rx=\"2\" fill=\"%232b6cb0\" stroke=\"%231e40af\" stroke-width=\"2\"/\u003e\n            \u003ccircle cx=\"8\" cy=\"24\" r=\"1.5\" fill=\"%2322c55e\"/\u003e\n            \u003ccircle cx=\"13\" cy=\"24\" r=\"1.5\" fill=\"%2322c55e\"/\u003e\n            \u003ccircle cx=\"18\" cy=\"24\" r=\"1.5\" fill=\"%2322c55e\"/\u003e\n            \u003ccircle cx=\"23\" cy=\"24\" r=\"1.5\" fill=\"%2322c55e\"/\u003e\n            \u003ccircle cx=\"28\" cy=\"24\" r=\"1.5\" fill=\"%2322c55e\"/\u003e\n            \u003ccircle cx=\"33\" cy=\"24\" r=\"1.5\" fill=\"%2322c55e\"/\u003e\n            \u003ccircle cx=\"38\" cy=\"24\" r=\"1.5\" fill=\"%2322c55e\"/\u003e\n            \u003ctext x=\"24\" y=\"16\" text-anchor=\"middle\" font-family=\"Arial\" font-size=\"7\" fill=\"%23374151\"\u003eSWITCH\u003c/text\u003e\n        \u003c/svg\u003e", "label": "s1", "shape": "image", "size": 45, "title": "\ud83c\udf10 s1 (SWITCH)\n========================================\nStatus: \ud83d\udfe1 UNKNOWN\n\n----------------------------------------\nLast Updated: 2025-08-24 10:38:15"}, {"borderWidth": 2, "color": {"border": "#1e40af"}, "font": {"color": "#000000"}, "id": "R2", "image": "data:image/svg+xml;charset=utf-8,\u003csvg xmlns=\"http://www.w3.org/2000/svg\" width=\"48\" height=\"48\" viewBox=\"0 0 48 48\"\u003e\n            \u003crect x=\"4\" y=\"18\" width=\"40\" height=\"12\" rx=\"2\" fill=\"%232b6cb0\" stroke=\"%231e40af\" stroke-width=\"2\"/\u003e\n            \u003ccircle cx=\"8\" cy=\"24\" r=\"1.5\" fill=\"%2322c55e\"/\u003e\n            \u003ccircle cx=\"13\" cy=\"24\" r=\"1.5\" fill=\"%2322c55e\"/\u003e\n            \u003ccircle cx=\"18\" cy=\"24\" r=\"1.5\" fill=\"%2322c55e\"/\u003e\n            \u003ccircle cx=\"23\" cy=\"24\" r=\"1.5\" fill=\"%2322c55e\"/\u003e\n            \u003ccircle cx=\"28\" cy=\"24\" r=\"1.5\" fill=\"%2322c55e\"/\u003e\n            \u003ccircle cx=\"33\" cy=\"24\" r=\"1.5\" fill=\"%2322c55e\"/\u003e\n            \u003ccircle cx=\"38\" cy=\"24\" r=\"1.5\" fill=\"%2322c55e\"/\u003e\n            \u003ctext x=\"24\" y=\"16\" text-anchor=\"middle\" font-family=\"Arial\" font-size=\"7\" fill=\"%23374151\"\u003eSWITCH\u003c/text\u003e\n        \u003c/svg\u003e", "label": "s2", "shape": "image", "size": 45, "title": "\ud83c\udf10 s2 (SWITCH)\n========================================\nStatus: \ud83d\udfe1 UNKNOWN\n\n----------------------------------------\nLast Updated: 2025-08-24 10:38:15"}, {"borderWidth": 2, "color": {"border": "#1e40af"}, "font": {"color": "#000000"}, "id": "R3", "image": "data:image/svg+xml;charset=utf-8,\u003csvg xmlns=\"http://www.w3.org/2000/svg\" width=\"48\" height=\"48\" viewBox=\"0 0 48 48\"\u003e\n            \u003crect x=\"4\" y=\"18\" width=\"40\" height=\"12\" rx=\"2\" fill=\"%232b6cb0\" stroke=\"%231e40af\" stroke-width=\"2\"/\u003e\n            \u003ccircle cx=\"8\" cy=\"24\" r=\"1.5\" fill=\"%2322c55e\"/\u003e\n            \u003ccircle cx=\"13\" cy=\"24\" r=\"1.5\" fill=\"%2322c55e\"/\u003e\n            \u003ccircle cx=\"18\" cy=\"24\" r=\"1.5\" fill=\"%2322c55e\"/\u003e\n            \u003ccircle cx=\"23\" cy=\"24\" r=\"1.5\" fill=\"%2322c55e\"/\u003e\n            \u003ccircle cx=\"28\" cy=\"24\" r=\"1.5\" fill=\"%2322c55e\"/\u003e\n            \u003ccircle cx=\"33\" cy=\"24\" r=\"1.5\" fill=\"%2322c55e\"/\u003e\n            \u003ccircle cx=\"38\" cy=\"24\" r=\"1.5\" fill=\"%2322c55e\"/\u003e\n            \u003ctext x=\"24\" y=\"16\" text-anchor=\"middle\" font-family=\"Arial\" font-size=\"7\" fill=\"%23374151\"\u003eSWITCH\u003c/text\u003e\n        \u003c/svg\u003e", "label": "s3", "shape": "image", "size": 45, "title": "\ud83c\udf10 s3 (SWITCH)\n========================================\nStatus: \ud83d\udfe1 UNKNOWN\n\n----------------------------------------\nLast Updated: 2025-08-24 10:38:15"}, {"borderWidth": 2, "color": {"border": "#1e40af"}, "font": {"color": "#000000"}, "id": "S1", "image": "data:image/svg+xml;charset=utf-8,\u003csvg xmlns=\"http://www.w3.org/2000/svg\" width=\"48\" height=\"48\" viewBox=\"0 0 48 48\"\u003e\n            \u003crect x=\"4\" y=\"18\" width=\"40\" height=\"12\" rx=\"2\" fill=\"%232b6cb0\" stroke=\"%231e40af\" stroke-width=\"2\"/\u003e\n            \u003ccircle cx=\"8\" cy=\"24\" r=\"1.5\" fill=\"%2322c55e\"/\u003e\n            \u003ccircle cx=\"13\" cy=\"24\" r=\"1.5\" fill=\"%2322c55e\"/\u003e\n            \u003ccircle cx=\"18\" cy=\"24\" r=\"1.5\" fill=\"%2322c55e\"/\u003e\n            \u003ccircle cx=\"23\" cy=\"24\" r=\"1.5\" fill=\"%2322c55e\"/\u003e\n            \u003ccircle cx=\"28\" cy=\"24\" r=\"1.5\" fill=\"%2322c55e\"/\u003e\n            \u003ccircle cx=\"33\" cy=\"24\" r=\"1.5\" fill=\"%2322c55e\"/\u003e\n            \u003ccircle cx=\"38\" cy=\"24\" r=\"1.5\" fill=\"%2322c55e\"/\u003e\n            \u003ctext x=\"24\" y=\"16\" text-anchor=\"middle\" font-family=\"Arial\" font-size=\"7\" fill=\"%23374151\"\u003eSWITCH\u003c/text\u003e\n        \u003c/svg\u003e", "label": "s1", "shape": "image", "size": 45, "title": "\ud83c\udf10 s1 (SWITCH)\n========================================\nStatus: \ud83d\udfe1 UNKNOWN\n\n----------------------------------------\nLast Updated: 2025-08-24 10:38:15"}, {"borderWidth": 2, "color": {"border": "#1e40af"}, "font": {"color": "#000000"}, "id": "S2", "image": "data:image/svg+xml;charset=utf-8,\u003csvg xmlns=\"http://www.w3.org/2000/svg\" width=\"48\" height=\"48\" viewBox=\"0 0 48 48\"\u003e\n            \u003crect x=\"4\" y=\"18\" width=\"40\" height=\"12\" rx=\"2\" fill=\"%232b6cb0\" stroke=\"%231e40af\" stroke-width=\"2\"/\u003e\n            \u003ccircle cx=\"8\" cy=\"24\" r=\"1.5\" fill=\"%2322c55e\"/\u003e\n            \u003ccircle cx=\"13\" cy=\"24\" r=\"1.5\" fill=\"%2322c55e\"/\u003e\n            \u003ccircle cx=\"18\" cy=\"24\" r=\"1.5\" fill=\"%2322c55e\"/\u003e\n            \u003ccircle cx=\"23\" cy=\"24\" r=\"1.5\" fill=\"%2322c55e\"/\u003e\n            \u003ccircle cx=\"28\" cy=\"24\" r=\"1.5\" fill=\"%2322c55e\"/\u003e\n            \u003ccircle cx=\"33\" cy=\"24\" r=\"1.5\" fill=\"%2322c55e\"/\u003e\n            \u003ccircle cx=\"38\" cy=\"24\" r=\"1.5\" fill=\"%2322c55e\"/\u003e\n            \u003ctext x=\"24\" y=\"16\" text-anchor=\"middle\" font-family=\"Arial\" font-size=\"7\" fill=\"%23374151\"\u003eSWITCH\u003c/text\u003e\n        \u003c/svg\u003e", "label": "s2", "shape": "image", "size": 45, "title": "\ud83c\udf10 s2 (SWITCH)\n========================================\nStatus: \ud83d\udfe1 UNKNOWN\n\n----------------------------------------\nLast Updated: 2025-08-24 10:38:15"}, {"borderWidth": 2, "color": {"border": "#1e40af"}, "font": {"color": "#000000"}, "id": "S3", "image": "data:image/svg+xml;charset=utf-8,\u003csvg xmlns=\"http://www.w3.org/2000/svg\" width=\"48\" height=\"48\" viewBox=\"0 0 48 48\"\u003e\n            \u003crect x=\"4\" y=\"18\" width=\"40\" height=\"12\" rx=\"2\" fill=\"%232b6cb0\" stroke=\"%231e40af\" stroke-width=\"2\"/\u003e\n            \u003ccircle cx=\"8\" cy=\"24\" r=\"1.5\" fill=\"%2322c55e\"/\u003e\n            \u003ccircle cx=\"13\" cy=\"24\" r=\"1.5\" fill=\"%2322c55e\"/\u003e\n            \u003ccircle cx=\"18\" cy=\"24\" r=\"1.5\" fill=\"%2322c55e\"/\u003e\n            \u003ccircle cx=\"23\" cy=\"24\" r=\"1.5\" fill=\"%2322c55e\"/\u003e\n            \u003ccircle cx=\"28\" cy=\"24\" r=\"1.5\" fill=\"%2322c55e\"/\u003e\n            \u003ccircle cx=\"33\" cy=\"24\" r=\"1.5\" fill=\"%2322c55e\"/\u003e\n            \u003ccircle cx=\"38\" cy=\"24\" r=\"1.5\" fill=\"%2322c55e\"/\u003e\n            \u003ctext x=\"24\" y=\"16\" text-anchor=\"middle\" font-family=\"Arial\" font-size=\"7\" fill=\"%23374151\"\u003eSWITCH\u003c/text\u003e\n        \u003c/svg\u003e", "label": "s3", "shape": "image", "size": 45, "title": "\ud83c\udf10 s3 (SWITCH)\n========================================\nStatus: \ud83d\udfe1 UNKNOWN\n\n----------------------------------------\nLast Updated: 2025-08-24 10:38:15"}, {"borderWidth": 2, "color": {"border": "#1f2937"}, "font": {"color": "#000000"}, "id": "PC1", "image": "data:image/svg+xml;charset=utf-8,\u003csvg xmlns=\"http://www.w3.org/2000/svg\" width=\"48\" height=\"48\" viewBox=\"0 0 48 48\"\u003e\n            \u003crect x=\"6\" y=\"8\" width=\"36\" height=\"24\" rx=\"2\" fill=\"%23374151\" stroke=\"%231f2937\" stroke-width=\"2\"/\u003e\n            \u003crect x=\"8\" y=\"10\" width=\"32\" height=\"18\" fill=\"%2360a5fa\"/\u003e\n            \u003crect x=\"10\" y=\"12\" width=\"28\" height=\"14\" fill=\"%23dbeafe\"/\u003e\n            \u003crect x=\"20\" y=\"32\" width=\"8\" height=\"4\" fill=\"%234b5563\"/\u003e\n            \u003crect x=\"12\" y=\"36\" width=\"24\" height=\"4\" rx=\"2\" fill=\"%236b7280\"/\u003e\n            \u003ctext x=\"24\" y=\"22\" text-anchor=\"middle\" font-family=\"Arial\" font-size=\"8\" fill=\"%23374151\"\u003ePC\u003c/text\u003e\n        \u003c/svg\u003e", "label": "pc", "shape": "image", "size": 45, "title": "\ud83c\udf10 pc (PC)\n========================================\nStatus: \ud83d\udfe1 UNKNOWN\n\n----------------------------------------\nLast Updated: 2025-08-24 10:38:15"}, {"borderWidth": 2, "color": {"border": "#1f2937"}, "font": {"color": "#000000"}, "id": "PC2", "image": "data:image/svg+xml;charset=utf-8,\u003csvg xmlns=\"http://www.w3.org/2000/svg\" width=\"48\" height=\"48\" viewBox=\"0 0 48 48\"\u003e\n            \u003crect x=\"6\" y=\"8\" width=\"36\" height=\"24\" rx=\"2\" fill=\"%23374151\" stroke=\"%231f2937\" stroke-width=\"2\"/\u003e\n            \u003crect x=\"8\" y=\"10\" width=\"32\" height=\"18\" fill=\"%2360a5fa\"/\u003e\n            \u003crect x=\"10\" y=\"12\" width=\"28\" height=\"14\" fill=\"%23dbeafe\"/\u003e\n            \u003crect x=\"20\" y=\"32\" width=\"8\" height=\"4\" fill=\"%234b5563\"/\u003e\n            \u003crect x=\"12\" y=\"36\" width=\"24\" height=\"4\" rx=\"2\" fill=\"%236b7280\"/\u003e\n            \u003ctext x=\"24\" y=\"22\" text-anchor=\"middle\" font-family=\"Arial\" font-size=\"8\" fill=\"%23374151\"\u003ePC\u003c/text\u003e\n        \u003c/svg\u003e", "label": "pc", "shape": "image", "size": 45, "title": "\ud83c\udf10 pc (PC)\n========================================\nStatus: \ud83d\udfe1 UNKNOWN\n\n----------------------------------------\nLast Updated: 2025-08-24 10:38:15"}, {"borderWidth": 2, "color": {"border": "#1f2937"}, "font": {"color": "#000000"}, "id": "PC3", "image": "data:image/svg+xml;charset=utf-8,\u003csvg xmlns=\"http://www.w3.org/2000/svg\" width=\"48\" height=\"48\" viewBox=\"0 0 48 48\"\u003e\n            \u003crect x=\"6\" y=\"8\" width=\"36\" height=\"24\" rx=\"2\" fill=\"%23374151\" stroke=\"%231f2937\" stroke-width=\"2\"/\u003e\n            \u003crect x=\"8\" y=\"10\" width=\"32\" height=\"18\" fill=\"%2360a5fa\"/\u003e\n            \u003crect x=\"10\" y=\"12\" width=\"28\" height=\"14\" fill=\"%23dbeafe\"/\u003e\n            \u003crect x=\"20\" y=\"32\" width=\"8\" height=\"4\" fill=\"%234b5563\"/\u003e\n            \u003crect x=\"12\" y=\"36\" width=\"24\" height=\"4\" rx=\"2\" fill=\"%236b7280\"/\u003e\n            \u003ctext x=\"24\" y=\"22\" text-anchor=\"middle\" font-family=\"Arial\" font-size=\"8\" fill=\"%23374151\"\u003ePC\u003c/text\u003e\n        \u003c/svg\u003e", "label": "pc", "shape": "image", "size": 45, "title": "\ud83c\udf10 pc (PC)\n========================================\nStatus: \ud83d\udfe1 UNKNOWN\n\n----------------------------------------\nLast Updated: 2025-08-24 10:38:15"}, {"borderWidth": 2, "color": {"border": "#1f2937"}, "font": {"color": "#000000"}, "id": "PC4", "image": "data:image/svg+xml;charset=utf-8,\u003csvg xmlns=\"http://www.w3.org/2000/svg\" width=\"48\" height=\"48\" viewBox=\"0 0 48 48\"\u003e\n            \u003crect x=\"6\" y=\"8\" width=\"36\" height=\"24\" rx=\"2\" fill=\"%23374151\" stroke=\"%231f2937\" stroke-width=\"2\"/\u003e\n            \u003crect x=\"8\" y=\"10\" width=\"32\" height=\"18\" fill=\"%2360a5fa\"/\u003e\n            \u003crect x=\"10\" y=\"12\" width=\"28\" height=\"14\" fill=\"%23dbeafe\"/\u003e\n            \u003crect x=\"20\" y=\"32\" width=\"8\" height=\"4\" fill=\"%234b5563\"/\u003e\n            \u003crect x=\"12\" y=\"36\" width=\"24\" height=\"4\" rx=\"2\" fill=\"%236b7280\"/\u003e\n            \u003ctext x=\"24\" y=\"22\" text-anchor=\"middle\" font-family=\"Arial\" font-size=\"8\" fill=\"%23374151\"\u003ePC\u003c/text\u003e\n        \u003c/svg\u003e", "label": "pc", "shape": "image", "size": 45, "title": "\ud83c\udf10 pc (PC)\n========================================\nStatus: \ud83d\udfe1 UNKNOWN\n\n----------------------------------------\nLast Updated: 2025-08-24 10:38:15"}, {"borderWidth": 2, "color": {"border": "#1f2937"}, "font": {"color": "#000000"}, "id": "PC5", "image": "data:image/svg+xml;charset=utf-8,\u003csvg xmlns=\"http://www.w3.org/2000/svg\" width=\"48\" height=\"48\" viewBox=\"0 0 48 48\"\u003e\n            \u003crect x=\"6\" y=\"8\" width=\"36\" height=\"24\" rx=\"2\" fill=\"%23374151\" stroke=\"%231f2937\" stroke-width=\"2\"/\u003e\n            \u003crect x=\"8\" y=\"10\" width=\"32\" height=\"18\" fill=\"%2360a5fa\"/\u003e\n            \u003crect x=\"10\" y=\"12\" width=\"28\" height=\"14\" fill=\"%23dbeafe\"/\u003e\n            \u003crect x=\"20\" y=\"32\" width=\"8\" height=\"4\" fill=\"%234b5563\"/\u003e\n            \u003crect x=\"12\" y=\"36\" width=\"24\" height=\"4\" rx=\"2\" fill=\"%236b7280\"/\u003e\n            \u003ctext x=\"24\" y=\"22\" text-anchor=\"middle\" font-family=\"Arial\" font-size=\"8\" fill=\"%23374151\"\u003ePC\u003c/text\u003e\n        \u003c/svg\u003e", "label": "pc", "shape": "image", "size": 45, "title": "\ud83c\udf10 pc (PC)\n========================================\nStatus: \ud83d\udfe1 UNKNOWN\n\n----------------------------------------\nLast Updated: 2025-08-24 10:38:15"}, {"borderWidth": 2, "color": {"border": "#1f2937"}, "font": {"color": "#000000"}, "id": "PC6", "image": "data:image/svg+xml;charset=utf-8,\u003csvg xmlns=\"http://www.w3.org/2000/svg\" width=\"48\" height=\"48\" viewBox=\"0 0 48 48\"\u003e\n            \u003crect x=\"6\" y=\"8\" width=\"36\" height=\"24\" rx=\"2\" fill=\"%23374151\" stroke=\"%231f2937\" stroke-width=\"2\"/\u003e\n            \u003crect x=\"8\" y=\"10\" width=\"32\" height=\"18\" fill=\"%2360a5fa\"/\u003e\n            \u003crect x=\"10\" y=\"12\" width=\"28\" height=\"14\" fill=\"%23dbeafe\"/\u003e\n            \u003crect x=\"20\" y=\"32\" width=\"8\" height=\"4\" fill=\"%234b5563\"/\u003e\n            \u003crect x=\"12\" y=\"36\" width=\"24\" height=\"4\" rx=\"2\" fill=\"%236b7280\"/\u003e\n            \u003ctext x=\"24\" y=\"22\" text-anchor=\"middle\" font-family=\"Arial\" font-size=\"8\" fill=\"%23374151\"\u003ePC\u003c/text\u003e\n        \u003c/svg\u003e", "label": "pc", "shape": "image", "size": 45, "title": "\ud83c\udf10 pc (PC)\n========================================\nStatus: \ud83d\udfe1 UNKNOWN\n\n----------------------------------------\nLast Updated: 2025-08-24 10:38:15"}]);
+                  edges = new vis.DataSet([{"color": {"color": "#374151", "highlight": "#1f2937"}, "dashes": false, "from": "R1", "title": "\u003cdiv style=\u0027font-family: Arial; font-size: 11px;\u0027\u003e\u003cb style=\u0027color: #2563eb;\u0027\u003eR1 \u2194 PC1\u003c/b\u003e\u003cbr\u003e\u003cspan style=\u0027color: #64748b;\u0027\u003eLink Type:\u003c/span\u003e \u003cb\u003eSUBNET\u003c/b\u003e\u003c/div\u003e", "to": "PC1", "width": 3}, {"color": {"color": "#374151", "highlight": "#1f2937"}, "dashes": false, "from": "R1", "title": "\u003cdiv style=\u0027font-family: Arial; font-size: 11px;\u0027\u003e\u003cb style=\u0027color: #2563eb;\u0027\u003eR1 \u2194 PC2\u003c/b\u003e\u003cbr\u003e\u003cspan style=\u0027color: #64748b;\u0027\u003eLink Type:\u003c/span\u003e \u003cb\u003eSUBNET\u003c/b\u003e\u003c/div\u003e", "to": "PC2", "width": 3}, {"color": {"color": "#374151", "highlight": "#1f2937"}, "dashes": false, "from": "R1", "title": "\u003cdiv style=\u0027font-family: Arial; font-size: 11px;\u0027\u003e\u003cb style=\u0027color: #2563eb;\u0027\u003eR1 \u2194 R3\u003c/b\u003e\u003cbr\u003e\u003cspan style=\u0027color: #64748b;\u0027\u003eLink Type:\u003c/span\u003e \u003cb\u003eSUBNET\u003c/b\u003e\u003c/div\u003e", "to": "R3", "width": 3}, {"color": {"color": "#374151", "highlight": "#1f2937"}, "dashes": false, "from": "R1", "title": "\u003cdiv style=\u0027font-family: Arial; font-size: 11px;\u0027\u003e\u003cb style=\u0027color: #2563eb;\u0027\u003eR1 \u2194 S1\u003c/b\u003e\u003cbr\u003e\u003cspan style=\u0027color: #64748b;\u0027\u003eLink Type:\u003c/span\u003e \u003cb\u003eSUBNET\u003c/b\u003e\u003c/div\u003e", "to": "S1", "width": 3}, {"color": {"color": "#374151", "highlight": "#1f2937"}, "dashes": false, "from": "R1", "title": "\u003cdiv style=\u0027font-family: Arial; font-size: 11px;\u0027\u003e\u003cb style=\u0027color: #2563eb;\u0027\u003eR1 \u2194 R2\u003c/b\u003e\u003cbr\u003e\u003cspan style=\u0027color: #64748b;\u0027\u003eLink Type:\u003c/span\u003e \u003cb\u003eSUBNET\u003c/b\u003e\u003c/div\u003e", "to": "R2", "width": 3}, {"color": {"color": "#dc2626", "highlight": "#1f2937"}, "dashes": false, "from": "R2", "title": "\u003cdiv style=\u0027font-family: Arial; font-size: 11px;\u0027\u003e\u003cb style=\u0027color: #2563eb;\u0027\u003eR2 \u2194 S2\u003c/b\u003e\u003cbr\u003e\u003cspan style=\u0027color: #64748b;\u0027\u003eLink Type:\u003c/span\u003e \u003cb\u003eSUBNET\u003c/b\u003e\u003cbr\u003e\u003cspan style=\u0027color: #64748b;\u0027\u003eBandwidth:\u003c/span\u003e \u003cb\u003e10.0 Mbps\u003c/b\u003e\u003cbr\u003e\u003cspan style=\u0027color: #64748b;\u0027\u003eUtilization:\u003c/span\u003e \u003cspan style=\u0027color: #22c55e; font-weight: bold;\u0027\u003e23.6%\u003c/span\u003e\u003cbr\u003e\u003cspan style=\u0027color: #64748b;\u0027\u003ePriority:\u003c/span\u003e \u003cb\u003emedium\u003c/b\u003e\u003c/div\u003e", "to": "S2", "width": 2}, {"color": {"color": "#16a34a", "highlight": "#1f2937"}, "dashes": false, "from": "R2", "title": "\u003cdiv style=\u0027font-family: Arial; font-size: 11px;\u0027\u003e\u003cb style=\u0027color: #2563eb;\u0027\u003eR2 \u2194 R3\u003c/b\u003e\u003cbr\u003e\u003cspan style=\u0027color: #64748b;\u0027\u003eLink Type:\u003c/span\u003e \u003cb\u003eSUBNET\u003c/b\u003e\u003cbr\u003e\u003cspan style=\u0027color: #64748b;\u0027\u003eBandwidth:\u003c/span\u003e \u003cb\u003e10000.0 Mbps\u003c/b\u003e\u003cbr\u003e\u003cspan style=\u0027color: #64748b;\u0027\u003eUtilization:\u003c/span\u003e \u003cspan style=\u0027color: #22c55e; font-weight: bold;\u0027\u003e29.4%\u003c/span\u003e\u003cbr\u003e\u003cspan style=\u0027color: #64748b;\u0027\u003ePriority:\u003c/span\u003e \u003cb\u003emedium\u003c/b\u003e\u003c/div\u003e", "to": "R3", "width": 8}, {"color": {"color": "#374151", "highlight": "#1f2937"}, "dashes": false, "from": "R2", "title": "\u003cdiv style=\u0027font-family: Arial; font-size: 11px;\u0027\u003e\u003cb style=\u0027color: #2563eb;\u0027\u003eR2 \u2194 PC3\u003c/b\u003e\u003cbr\u003e\u003cspan style=\u0027color: #64748b;\u0027\u003eLink Type:\u003c/span\u003e \u003cb\u003eSUBNET\u003c/b\u003e\u003c/div\u003e", "to": "PC3", "width": 3}, {"color": {"color": "#374151", "highlight": "#1f2937"}, "dashes": false, "from": "R2", "title": "\u003cdiv style=\u0027font-family: Arial; font-size: 11px;\u0027\u003e\u003cb style=\u0027color: #2563eb;\u0027\u003eR2 \u2194 PC4\u003c/b\u003e\u003cbr\u003e\u003cspan style=\u0027color: #64748b;\u0027\u003eLink Type:\u003c/span\u003e \u003cb\u003eSUBNET\u003c/b\u003e\u003c/div\u003e", "to": "PC4", "width": 3}, {"color": {"color": "#dc2626", "highlight": "#1f2937"}, "dashes": false, "from": "R3", "title": "\u003cdiv style=\u0027font-family: Arial; font-size: 11px;\u0027\u003e\u003cb style=\u0027color: #2563eb;\u0027\u003eR3 \u2194 S3\u003c/b\u003e\u003cbr\u003e\u003cspan style=\u0027color: #64748b;\u0027\u003eLink Type:\u003c/span\u003e \u003cb\u003eSUBNET\u003c/b\u003e\u003cbr\u003e\u003cspan style=\u0027color: #64748b;\u0027\u003eBandwidth:\u003c/span\u003e \u003cb\u003e10.0 Mbps\u003c/b\u003e\u003cbr\u003e\u003cspan style=\u0027color: #64748b;\u0027\u003eUtilization:\u003c/span\u003e \u003cspan style=\u0027color: #22c55e; font-weight: bold;\u0027\u003e35.0%\u003c/span\u003e\u003cbr\u003e\u003cspan style=\u0027color: #64748b;\u0027\u003ePriority:\u003c/span\u003e \u003cb\u003emedium\u003c/b\u003e\u003c/div\u003e", "to": "S3", "width": 2}, {"color": {"color": "#374151", "highlight": "#1f2937"}, "dashes": false, "from": "R3", "title": "\u003cdiv style=\u0027font-family: Arial; font-size: 11px;\u0027\u003e\u003cb style=\u0027color: #2563eb;\u0027\u003eR3 \u2194 PC5\u003c/b\u003e\u003cbr\u003e\u003cspan style=\u0027color: #64748b;\u0027\u003eLink Type:\u003c/span\u003e \u003cb\u003eSUBNET\u003c/b\u003e\u003c/div\u003e", "to": "PC5", "width": 3}, {"color": {"color": "#374151", "highlight": "#1f2937"}, "dashes": false, "from": "R3", "title": "\u003cdiv style=\u0027font-family: Arial; font-size: 11px;\u0027\u003e\u003cb style=\u0027color: #2563eb;\u0027\u003eR3 \u2194 PC6\u003c/b\u003e\u003cbr\u003e\u003cspan style=\u0027color: #64748b;\u0027\u003eLink Type:\u003c/span\u003e \u003cb\u003eSUBNET\u003c/b\u003e\u003c/div\u003e", "to": "PC6", "width": 3}, {"color": {"color": "#dc2626", "highlight": "#1f2937"}, "dashes": false, "from": "S1", "title": "\u003cdiv style=\u0027font-family: Arial; font-size: 11px;\u0027\u003e\u003cb style=\u0027color: #2563eb;\u0027\u003eS1 \u2194 S1\u003c/b\u003e\u003cbr\u003e\u003cspan style=\u0027color: #64748b;\u0027\u003eLink Type:\u003c/span\u003e \u003cb\u003eSUBNET\u003c/b\u003e\u003cbr\u003e\u003cspan style=\u0027color: #64748b;\u0027\u003eBandwidth:\u003c/span\u003e \u003cb\u003e10.0 Mbps\u003c/b\u003e\u003cbr\u003e\u003cspan style=\u0027color: #64748b;\u0027\u003eUtilization:\u003c/span\u003e \u003cspan style=\u0027color: #22c55e; font-weight: bold;\u0027\u003e34.7%\u003c/span\u003e\u003cbr\u003e\u003cspan style=\u0027color: #64748b;\u0027\u003ePriority:\u003c/span\u003e \u003cb\u003emedium\u003c/b\u003e\u003c/div\u003e", "to": "S1", "width": 2}, {"color": {"color": "#dc2626", "highlight": "#1f2937"}, "dashes": false, "from": "S1", "title": "\u003cdiv style=\u0027font-family: Arial; font-size: 11px;\u0027\u003e\u003cb style=\u0027color: #2563eb;\u0027\u003eS1 \u2194 PC1\u003c/b\u003e\u003cbr\u003e\u003cspan style=\u0027color: #64748b;\u0027\u003eLink Type:\u003c/span\u003e \u003cb\u003eSUBNET\u003c/b\u003e\u003cbr\u003e\u003cspan style=\u0027color: #64748b;\u0027\u003eBandwidth:\u003c/span\u003e \u003cb\u003e10.0 Mbps\u003c/b\u003e\u003cbr\u003e\u003cspan style=\u0027color: #64748b;\u0027\u003eUtilization:\u003c/span\u003e \u003cspan style=\u0027color: #22c55e; font-weight: bold;\u0027\u003e27.8%\u003c/span\u003e\u003cbr\u003e\u003cspan style=\u0027color: #64748b;\u0027\u003ePriority:\u003c/span\u003e \u003cb\u003elow\u003c/b\u003e\u003c/div\u003e", "to": "PC1", "width": 2}, {"color": {"color": "#dc2626", "highlight": "#1f2937"}, "dashes": false, "from": "S1", "title": "\u003cdiv style=\u0027font-family: Arial; font-size: 11px;\u0027\u003e\u003cb style=\u0027color: #2563eb;\u0027\u003eS1 \u2194 PC2\u003c/b\u003e\u003cbr\u003e\u003cspan style=\u0027color: #64748b;\u0027\u003eLink Type:\u003c/span\u003e \u003cb\u003eSUBNET\u003c/b\u003e\u003cbr\u003e\u003cspan style=\u0027color: #64748b;\u0027\u003eBandwidth:\u003c/span\u003e \u003cb\u003e10.0 Mbps\u003c/b\u003e\u003cbr\u003e\u003cspan style=\u0027color: #64748b;\u0027\u003eUtilization:\u003c/span\u003e \u003cspan style=\u0027color: #22c55e; font-weight: bold;\u0027\u003e28.9%\u003c/span\u003e\u003cbr\u003e\u003cspan style=\u0027color: #64748b;\u0027\u003ePriority:\u003c/span\u003e \u003cb\u003elow\u003c/b\u003e\u003c/div\u003e", "to": "PC2", "width": 2}, {"color": {"color": "#dc2626", "highlight": "#1f2937"}, "dashes": false, "from": "S2", "title": "\u003cdiv style=\u0027font-family: Arial; font-size: 11px;\u0027\u003e\u003cb style=\u0027color: #2563eb;\u0027\u003eS2 \u2194 S2\u003c/b\u003e\u003cbr\u003e\u003cspan style=\u0027color: #64748b;\u0027\u003eLink Type:\u003c/span\u003e \u003cb\u003eSUBNET\u003c/b\u003e\u003cbr\u003e\u003cspan style=\u0027color: #64748b;\u0027\u003eBandwidth:\u003c/span\u003e \u003cb\u003e10.0 Mbps\u003c/b\u003e\u003cbr\u003e\u003cspan style=\u0027color: #64748b;\u0027\u003eUtilization:\u003c/span\u003e \u003cspan style=\u0027color: #22c55e; font-weight: bold;\u0027\u003e16.9%\u003c/span\u003e\u003cbr\u003e\u003cspan style=\u0027color: #64748b;\u0027\u003ePriority:\u003c/span\u003e \u003cb\u003emedium\u003c/b\u003e\u003c/div\u003e", "to": "S2", "width": 2}, {"color": {"color": "#dc2626", "highlight": "#1f2937"}, "dashes": false, "from": "S2", "title": "\u003cdiv style=\u0027font-family: Arial; font-size: 11px;\u0027\u003e\u003cb style=\u0027color: #2563eb;\u0027\u003eS2 \u2194 PC3\u003c/b\u003e\u003cbr\u003e\u003cspan style=\u0027color: #64748b;\u0027\u003eLink Type:\u003c/span\u003e \u003cb\u003eSUBNET\u003c/b\u003e\u003cbr\u003e\u003cspan style=\u0027color: #64748b;\u0027\u003eBandwidth:\u003c/span\u003e \u003cb\u003e10.0 Mbps\u003c/b\u003e\u003cbr\u003e\u003cspan style=\u0027color: #64748b;\u0027\u003eUtilization:\u003c/span\u003e \u003cspan style=\u0027color: #22c55e; font-weight: bold;\u0027\u003e34.6%\u003c/span\u003e\u003cbr\u003e\u003cspan style=\u0027color: #64748b;\u0027\u003ePriority:\u003c/span\u003e \u003cb\u003elow\u003c/b\u003e\u003c/div\u003e", "to": "PC3", "width": 2}, {"color": {"color": "#dc2626", "highlight": "#1f2937"}, "dashes": false, "from": "S2", "title": "\u003cdiv style=\u0027font-family: Arial; font-size: 11px;\u0027\u003e\u003cb style=\u0027color: #2563eb;\u0027\u003eS2 \u2194 PC4\u003c/b\u003e\u003cbr\u003e\u003cspan style=\u0027color: #64748b;\u0027\u003eLink Type:\u003c/span\u003e \u003cb\u003eSUBNET\u003c/b\u003e\u003cbr\u003e\u003cspan style=\u0027color: #64748b;\u0027\u003eBandwidth:\u003c/span\u003e \u003cb\u003e10.0 Mbps\u003c/b\u003e\u003cbr\u003e\u003cspan style=\u0027color: #64748b;\u0027\u003eUtilization:\u003c/span\u003e \u003cspan style=\u0027color: #22c55e; font-weight: bold;\u0027\u003e33.7%\u003c/span\u003e\u003cbr\u003e\u003cspan style=\u0027color: #64748b;\u0027\u003ePriority:\u003c/span\u003e \u003cb\u003elow\u003c/b\u003e\u003c/div\u003e", "to": "PC4", "width": 2}, {"color": {"color": "#dc2626", "highlight": "#1f2937"}, "dashes": false, "from": "S3", "title": "\u003cdiv style=\u0027font-family: Arial; font-size: 11px;\u0027\u003e\u003cb style=\u0027color: #2563eb;\u0027\u003eS3 \u2194 S3\u003c/b\u003e\u003cbr\u003e\u003cspan style=\u0027color: #64748b;\u0027\u003eLink Type:\u003c/span\u003e \u003cb\u003eSUBNET\u003c/b\u003e\u003cbr\u003e\u003cspan style=\u0027color: #64748b;\u0027\u003eBandwidth:\u003c/span\u003e \u003cb\u003e10.0 Mbps\u003c/b\u003e\u003cbr\u003e\u003cspan style=\u0027color: #64748b;\u0027\u003eUtilization:\u003c/span\u003e \u003cspan style=\u0027color: #22c55e; font-weight: bold;\u0027\u003e38.0%\u003c/span\u003e\u003cbr\u003e\u003cspan style=\u0027color: #64748b;\u0027\u003ePriority:\u003c/span\u003e \u003cb\u003emedium\u003c/b\u003e\u003c/div\u003e", "to": "S3", "width": 2}, {"color": {"color": "#dc2626", "highlight": "#1f2937"}, "dashes": false, "from": "S3", "title": "\u003cdiv style=\u0027font-family: Arial; font-size: 11px;\u0027\u003e\u003cb style=\u0027color: #2563eb;\u0027\u003eS3 \u2194 PC5\u003c/b\u003e\u003cbr\u003e\u003cspan style=\u0027color: #64748b;\u0027\u003eLink Type:\u003c/span\u003e \u003cb\u003eSUBNET\u003c/b\u003e\u003cbr\u003e\u003cspan style=\u0027color: #64748b;\u0027\u003eBandwidth:\u003c/span\u003e \u003cb\u003e10.0 Mbps\u003c/b\u003e\u003cbr\u003e\u003cspan style=\u0027color: #64748b;\u0027\u003eUtilization:\u003c/span\u003e \u003cspan style=\u0027color: #22c55e; font-weight: bold;\u0027\u003e16.5%\u003c/span\u003e\u003cbr\u003e\u003cspan style=\u0027color: #64748b;\u0027\u003ePriority:\u003c/span\u003e \u003cb\u003elow\u003c/b\u003e\u003c/div\u003e", "to": "PC5", "width": 2}, {"color": {"color": "#dc2626", "highlight": "#1f2937"}, "dashes": false, "from": "S3", "title": "\u003cdiv style=\u0027font-family: Arial; font-size: 11px;\u0027\u003e\u003cb style=\u0027color: #2563eb;\u0027\u003eS3 \u2194 PC6\u003c/b\u003e\u003cbr\u003e\u003cspan style=\u0027color: #64748b;\u0027\u003eLink Type:\u003c/span\u003e \u003cb\u003eSUBNET\u003c/b\u003e\u003cbr\u003e\u003cspan style=\u0027color: #64748b;\u0027\u003eBandwidth:\u003c/span\u003e \u003cb\u003e10.0 Mbps\u003c/b\u003e\u003cbr\u003e\u003cspan style=\u0027color: #64748b;\u0027\u003eUtilization:\u003c/span\u003e \u003cspan style=\u0027color: #22c55e; font-weight: bold;\u0027\u003e30.1%\u003c/span\u003e\u003cbr\u003e\u003cspan style=\u0027color: #64748b;\u0027\u003ePriority:\u003c/span\u003e \u003cb\u003elow\u003c/b\u003e\u003c/div\u003e", "to": "PC6", "width": 2}, {"color": {"color": "#374151", "highlight": "#1f2937"}, "dashes": false, "from": "PC1", "title": "\u003cdiv style=\u0027font-family: Arial; font-size: 11px;\u0027\u003e\u003cb style=\u0027color: #2563eb;\u0027\u003ePC1 \u2194 PC2\u003c/b\u003e\u003cbr\u003e\u003cspan style=\u0027color: #64748b;\u0027\u003eLink Type:\u003c/span\u003e \u003cb\u003eSUBNET\u003c/b\u003e\u003c/div\u003e", "to": "PC2", "width": 3}, {"color": {"color": "#374151", "highlight": "#1f2937"}, "dashes": false, "from": "PC3", "title": "\u003cdiv style=\u0027font-family: Arial; font-size: 11px;\u0027\u003e\u003cb style=\u0027color: #2563eb;\u0027\u003ePC3 \u2194 PC4\u003c/b\u003e\u003cbr\u003e\u003cspan style=\u0027color: #64748b;\u0027\u003eLink Type:\u003c/span\u003e \u003cb\u003eSUBNET\u003c/b\u003e\u003c/div\u003e", "to": "PC4", "width": 3}, {"color": {"color": "#ea580c", "highlight": "#1f2937"}, "dashes": false, "from": "PC5", "title": "\u003cdiv style=\u0027font-family: Arial; font-size: 11px;\u0027\u003e\u003cb style=\u0027color: #2563eb;\u0027\u003ePC5 \u2194 PC6\u003c/b\u003e\u003cbr\u003e\u003cspan style=\u0027color: #64748b;\u0027\u003eLink Type:\u003c/span\u003e \u003cb\u003eSUBNET\u003c/b\u003e\u003cbr\u003e\u003cspan style=\u0027color: #64748b;\u0027\u003eBandwidth:\u003c/span\u003e \u003cb\u003e100.0 Mbps\u003c/b\u003e\u003cbr\u003e\u003cspan style=\u0027color: #64748b;\u0027\u003eUtilization:\u003c/span\u003e \u003cspan style=\u0027color: #22c55e; font-weight: bold;\u0027\u003e31.5%\u003c/span\u003e\u003cbr\u003e\u003cspan style=\u0027color: #64748b;\u0027\u003ePriority:\u003c/span\u003e \u003cb\u003elow\u003c/b\u003e\u003c/div\u003e", "to": "PC6", "width": 4}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {"interaction": {"hover": true, "tooltipDelay": 300, "multiselect": true, "navigationButtons": true, "selectConnectedEdges": false}, "physics": {"enabled": true, "stabilization": {"enabled": true, "fit": true, "iterations": 2000, "updateInterval": 25}}, "nodes": {"shadow": {"enabled": true, "color": "rgba(0,0,0,0.15)", "size": 6, "x": 3, "y": 3}, "font": {"size": 12, "face": "Arial,sans-serif", "color": "#000000"}, "borderWidth": 2, "size": 35, "chosen": {"node": {"color": "#3182ce"}}}, "edges": {"smooth": {"type": "straightCross", "forceDirection": "none"}, "shadow": false, "font": {"size": 10, "face": "Arial,sans-serif", "color": "#4a5568", "strokeWidth": 3, "strokeColor": "#ffffff"}, "chosen": {"edge": {"color": "#3182ce"}}}};
+
+                  
+
+
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+
+                  
+
+
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    
+<!-- Cisco Packet Tracer Style Controls -->
+<style>
+  .cisco-toolbar {
+    position: fixed; 
+    top: 10px; 
+    left: 10px; 
+    right: 10px;
+    z-index: 9999;
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); 
+    border: 1px solid #cbd5e1; 
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+    font-size: 12px;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .cisco-toolbar h3 { 
+    margin: 0; 
+    font-size: 16px; 
+    font-weight: 600; 
+    color: #1e293b;
+    display: flex;
+    align-items: center;
+  }
+  .cisco-controls { 
+    display: flex; 
+    gap: 12px; 
+    align-items: center;
+  }
+  .cisco-btn { 
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    color: white; 
+    border: none;
+    padding: 6px 12px; 
+    border-radius: 5px; 
+    cursor: pointer;
+    font-size: 11px; 
+    font-weight: 500;
+    transition: all 0.2s;
+    border: 1px solid #2563eb;
+  }
+  .cisco-btn:hover {
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(59,130,246,0.3);
+  }
+  .cisco-legend {
+    position: fixed; 
+    bottom: 10px; 
+    left: 10px; 
+    z-index: 9999;
+    background: rgba(248, 250, 252, 0.95); 
+    backdrop-filter: blur(10px);
+    border: 1px solid #cbd5e1; 
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    padding: 12px; 
+    font-size: 11px;
+    min-width: 200px;
+    max-width: 300px;
+  }
+  .cisco-legend h4 { 
+    margin: 0 0 10px 0; 
+    font-size: 13px; 
+    font-weight: 600; 
+    color: #1e293b;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 5px;
+  }
+  .legend-item {
+    display: flex; 
+    align-items: center; 
+    margin: 6px 0;
+  }
+  .legend-line { 
+    width: 24px; 
+    height: 3px; 
+    margin-right: 8px;
+    border-radius: 2px;
+  }
+  .legend-dashed {
+    background: repeating-linear-gradient(to right, currentColor 0px, currentColor 6px, transparent 6px, transparent 12px);
+  }
+  .device-legend {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    margin-top: 10px;
+  }
+  .device-item {
+    display: flex;
+    align-items: center;
+    font-size: 10px;
+    color: #64748b;
+  }
+  .device-icon {
+    width: 16px;
+    height: 16px;
+    margin-right: 6px;
+    border-radius: 2px;
+  }
+</style>
+
+<div class="cisco-toolbar">
+  <h3>🌐 Network Topology Viewer</h3>
+  <div class="cisco-controls">
+    <button id="fitBtn" class="cisco-btn">📍 Fit View</button>
+    <button id="togglePhysicsBtn" class="cisco-btn">⚡ Physics</button>
+    <button id="zoomInBtn" class="cisco-btn">🔍 Zoom In</button>
+    <button id="zoomOutBtn" class="cisco-btn">🔍 Zoom Out</button>
+    <button id="fullscreenBtn" class="cisco-btn">⛶ Fullscreen</button>
+  </div>
+</div>
+
+<div class="cisco-legend">
+  <h4>📋 Network Legend</h4>
+  
+  <div style="margin-bottom: 12px;">
+    <strong style="font-size: 11px; color: #374151;">Connection Types:</strong>
+    <div class="legend-item">
+      <div class="legend-line" style="background: #374151;"></div>
+      <span>Subnet/Ethernet</span>
+    </div>
+    <div class="legend-item">
+      <div class="legend-line legend-dashed" style="color: #dc2626;"></div>
+      <span>Serial Links</span>
+    </div>
+    <div class="legend-item">
+      <div class="legend-line legend-dashed" style="color: #059669;"></div>
+      <span>OSPF Routes</span>
+    </div>
+    <div class="legend-item">
+      <div class="legend-line legend-dashed" style="color: #7c3aed;"></div>
+      <span>BGP Routes</span>
+    </div>
+    <div class="legend-item">
+      <div class="legend-line" style="background: #ea580c; height: 5px;"></div>
+      <span>Trunk Links</span>
+    </div>
+  </div>
+
+  <div>
+    <strong style="font-size: 11px; color: #374151;">Device Types:</strong>
+    <div class="device-legend">
+      <div class="device-item">
+        <div class="device-icon" style="background: #4a5568;"></div>
+        <span>Router</span>
+      </div>
+      <div class="device-item">
+        <div class="device-icon" style="background: #2b6cb0;"></div>
+        <span>Switch</span>
+      </div>
+      <div class="device-item">
+        <div class="device-icon" style="background: #374151;"></div>
+        <span>PC/Host</span>
+      </div>
+      <div class="device-item">
+        <div class="device-icon" style="background: #dc2626;"></div>
+        <span>Firewall</span>
+      </div>
+      <div class="device-item">
+        <div class="device-icon" style="background: #059669;"></div>
+        <span>Access Point</span>
+      </div>
+      <div class="device-item">
+        <div class="device-icon" style="background: #1f2937;"></div>
+        <span>Server</span>
+      </div>
+    </div>
+  </div>
+  
+  <div style="margin-top: 12px; font-size: 10px; color: #64748b; border-top: 1px solid #e2e8f0; padding-top: 8px;">
+    💡 <strong>Tips:</strong><br>
+    • Hover over devices for details<br>
+    • Click and drag to move nodes<br>
+    • Use mouse wheel to zoom<br>
+    • Thicker lines = Higher bandwidth
+  </div>
+</div>
+
+<script>
+(function() {
+  function initializeCiscoControls() {
+    try {
+      if (typeof network === "undefined") {
+        return setTimeout(initializeCiscoControls, 100);
+      }
+      
+      var physicsEnabled = true;
+
+      // Fit to view
+      document.getElementById("fitBtn").addEventListener("click", function() {
+        try { 
+          network.fit({animation: {duration: 1500, easingFunction: "easeOutCubic"}}); 
+        } catch (e) { 
+          console.warn("Fit failed:", e); 
+        }
+      });
+
+      // Physics toggle
+      document.getElementById("togglePhysicsBtn").addEventListener("click", function() {
+        physicsEnabled = !physicsEnabled;
+        try { 
+          network.setOptions({ physics: { enabled: physicsEnabled } });
+          this.textContent = physicsEnabled ? "⚡ Physics" : "⏸️ Physics";
+          this.style.background = physicsEnabled ? 
+            "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)" : 
+            "linear-gradient(135deg, #ef4444 0%, #dc2626 100%)";
+        } catch (e) { 
+          console.warn("Physics toggle failed:", e); 
+        }
+      });
+
+      // Zoom controls with smooth animation
+      document.getElementById("zoomInBtn").addEventListener("click", function() {
+        try {
+          var currentScale = network.getScale();
+          network.moveTo({scale: currentScale * 1.3, animation: {duration: 500}});
+        } catch (e) {
+          console.warn("Zoom in failed:", e);
+        }
+      });
+      
+      document.getElementById("zoomOutBtn").addEventListener("click", function() {
+        try {
+          var currentScale = network.getScale();
+          network.moveTo({scale: currentScale / 1.3, animation: {duration: 500}});
+        } catch (e) {
+          console.warn("Zoom out failed:", e);
+        }
+      });
+
+      // Fullscreen toggle
+      document.getElementById("fullscreenBtn").addEventListener("click", function() {
+        try {
+          if (!document.fullscreenElement) {
+            document.documentElement.requestFullscreen();
+            this.textContent = "🗗 Exit Fullscreen";
+          } else {
+            document.exitFullscreen();
+            this.textContent = "⛶ Fullscreen";
+          }
+        } catch (e) {
+          console.warn("Fullscreen failed:", e);
+        }
+      });
+
+      // Auto-fit after network stabilizes
+      network.on("stabilizationIterationsDone", function () {
+        setTimeout(function() {
+          try {
+            network.fit({animation: {duration: 2000, easingFunction: "easeOutCubic"}});
+          } catch (e) {
+            console.warn("Auto-fit failed:", e);
+          }
+        }, 1000);
+      });
+
+      // Cisco-style node selection effects
+      network.on("selectNode", function (params) {
+        if (params.nodes.length > 0) {
+          console.log("Selected device:", params.nodes[0]);
+        }
+      });
+      
+    } catch (e) {
+      console.warn("Cisco control initialization error:", e);
+      setTimeout(initializeCiscoControls, 200);
+    }
+  }
+  
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initializeCiscoControls);
+  } else {
+    initializeCiscoControls();
+  }
+})();
+</script>
+</body>
+</html>
