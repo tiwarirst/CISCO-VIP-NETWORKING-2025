@@ -9,6 +9,10 @@
 
 A comprehensive network automation tool that parses Cisco device configurations, generates interactive topology visualizations, validates network setups, and simulates various network scenarios including fault conditions.
 
+## 📖 Overview
+
+This project automates the end-to-end process of network topology creation and simulation. It parses device configurations, constructs a hierarchical topology, validates configuration compliance with best practices, and tests network performance through detailed simulations.
+
 ## 🌟 Features
 
 ### 🔹 Network Configuration Parser
@@ -157,50 +161,20 @@ The tool generates comprehensive HTML reports containing:
 
 ---
 
-### 2️⃣ Generate Network Topology
-python main.py --generate-topology
-<img width="749" height="152" alt="Screenshot 2025-08-15 191126" src="https://github.com/user-attachments/assets/beecd60b-dd91-49a3-9d1a-46d44b7657cf" />
+## 📊 Network Topology Example
 
+![Network Topology](comprehensive_reports/network_topology_20250824_103815.html)
 
-text
-**Outputs:**
-- `reports/network_topology_<timestamp>.html` (Interactive Graph)
-- JSON topology data
-<img width="1882" height="1026" alt="Screenshot 2025-08-15 191304" src="https://github.com/user-attachments/assets/ffcead03-7036-4600-b7a0-d1fc4c633929" />
+Our network topology consists of:
+- 6 PCs (End devices)
+- 3 Switches (S1, S2, S3)
+- Network connections between switches and PCs
 
-
-### 3️⃣ Validate Configurations
-python main.py --validate-config
-<img width="783" height="358" alt="Screenshot 2025-08-15 191607" src="https://github.com/user-attachments/assets/7416fb3d-ea9b-4977-b7a8-9cb8f0589fc7" />
-
-
-### 4️⃣ Run Simulations
-
-**Day-1 Simulation:**
-python main.py --simulate --day 1
-
-<img width="614" height="248" alt="Screenshot 2025-08-15 192035" src="https://github.com/user-attachments/assets/3be98565-cf60-4121-b99c-9d2e08b31be0" />
-
-
-**Day-2 Simulation (Fault Tests):**
-python main.py --simulate --day 2
-
-<img width="921" height="412" alt="Screenshot 2025-08-15 192113" src="https://github.com/user-attachments/assets/0dbe2e9a-31d0-4e72-b232-49d8a3440219" />
-
----
-
-### 5️⃣ Pause / Resume Simulation
-python main.py --pause
-python main.py --resume
-
-<img width="725" height="650" alt="Screenshot 2025-08-15 192152" src="https://github.com/user-attachments/assets/194c8f98-01f8-450c-b14f-0dae3c578f67" />
-
-
----
-
-## 📊 Example Output
-
-<img width="1882" height="1026" alt="Screenshot 2025-08-15 191304" src="https://github.com/user-attachments/assets/5123fe89-16dc-4c0e-bcd9-dd197bd5af74" />
+The topology visualization provides:
+- Interactive node movement and zoom
+- Device information on hover
+- Connection type indicators
+- Bandwidth visualization through line thickness
 
 
 - **Network Bring-Up**
