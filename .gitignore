@@ -1,10 +1,61 @@
-# Byte-compiled / optimized / DLL files
+# Python bytecode and cache
 __pycache__/
 *.py[codz]
 *$py.class
 
-# C extensions
-*.so
+# Environment and IDE
+.env
+.venv/
+env/
+venv/
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Project specific
+comprehensive_reports/*
+!comprehensive_reports/.gitkeep
+PROJECT-REPORT.docx.pdf
+
+# Network specific files
+*.pcap
+*.log
+*.cap
+*.dump
+*.cisco
+*.bak
+*.old
+*.backup
+configs/backup/
+logs/
+captures/
+
+# Network topology outputs
+*.dot
+*.svg
+*.png
+*.jpg
+!docs/*.png
+!docs/*.jpg
+
+# Simulation/Emulation files
+*.virl
+*.gns3
+*.eve-ng
+simulation_data/
+temp_configs/
+
+# Python packaging
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Test cache and coverage
+.pytest_cache/
+.coverage
+htmlcov/
 
 # Distribution / packaging
 .Python
